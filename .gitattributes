@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.png binary
+*.ttf binary
+*.moc3 binary

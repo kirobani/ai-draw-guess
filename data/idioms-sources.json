@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-08",
+  "sources": [
+    {
+      "url": "https://github.com/pwxcoo/chinese-xinhua",
+      "file": "data/idiom.json",
+      "sha256": "1d4b4f454ce1c416d6a1ab2369d6e66c0ff99e04390172eef70790499e21ce19",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/thunlp/THUOCL",
+      "file": "data/THUOCL_chengyu.txt",
+      "sha256": "c339d5d6e37d4f8ecdcb82f2a02b7fdfc66796f0a5215155f2aff8a77e89a7eb",
+      "usage": "Frequency ranking only, restricted to Xinhua four-Han-character entries"
+    }
+  ],
+  "sourceRows": 30895,
+  "counts": {
+    "easy": 218,
+    "normal": 2000,
+    "challenge": 29508
+  },
+  "manualSupplements": [
+    "桃园结义",
+    "马失前蹄",
+    "羊入虎口",
+    "螳螂捕蝉",
+    "绿树成荫",
+    "妙笔生花"
+  ],
+  "method": "Trim, keep exactly four Han characters, deduplicate, add six commonly used four-character idioms missing from the source. Easy is manually selected for recognizable scenes; normal is easy plus highest THUOCL-frequency matches up to 2000; challenge is every retained Xinhua entry plus supplements. No claim to exhaust all historical idioms.",
+  "excludedEasyCandidates": [
+    "九牛二虎",
+    "雷声大雨点小"
+  ]
+}

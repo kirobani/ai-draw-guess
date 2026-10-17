@@ -1,0 +1,13 @@
+.local/
+.env
+.env.*
+!.env.example
+node_modules/
+*.log
+coverage/
+dist/
+public/models/agentkit-expressions-r3/
+public/vendor/live2dcubismcore*
+*.zip
+.DS_Store
+Thumbs.db

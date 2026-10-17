@@ -1,0 +1,490 @@
+{
+  "version": "avatars-v1",
+  "files": [
+    {
+      "path": "public/models/agentkit-expressions-r3/chatgpt/chatgpt-expressions.2048/texture_00.png",
+      "size": 37383627,
+      "sha256": "4ea0680040572c37403caef6b17de04ef598075b145418106161e2bea8ba37f0"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/chatgpt/chatgpt-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/chatgpt/chatgpt-expressions.cdi3.json",
+      "size": 11312,
+      "sha256": "41f7e79e515514dd4643ebdcb345915f1779f34c9fe4839d8c18106de61ee1dd"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/chatgpt/chatgpt-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/chatgpt/chatgpt-expressions.moc3",
+      "size": 4409024,
+      "sha256": "1e71a71951a4a4bcd06367663fa0f8a4e43f57cf5c968afbd6fb535b31fed062"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/chatgpt/chatgpt-expressions.model3.json",
+      "size": 733,
+      "sha256": "c9ea267435d2c89ee3a92b33df4dbf04d9568720b980c83cc7ea83e3e24acc3c"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/chatgpt/chatgpt-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/chatgpt/chatgpt-expressions.physics3.json",
+      "size": 6049,
+      "sha256": "289620630ecac41b18471e4876fe79afea078cf1bbfe77ef812bfdbd6b775441"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/chatgpt/chatgpt-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/claude/claude-expressions.2048/texture_00.png",
+      "size": 34805922,
+      "sha256": "bec6dffff6eba4264acb24c19cd490e870cce856843b150ee447af726e2dd34a"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/claude/claude-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/claude/claude-expressions.cdi3.json",
+      "size": 10818,
+      "sha256": "4b2f02c219c9f97577c8698a6357ac66de94913fca94ef329c7adf3270e76ed5"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/claude/claude-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/claude/claude-expressions.moc3",
+      "size": 3782848,
+      "sha256": "090d005195a402b27ec05c190f39e65e69b9a6396c872867ba007a9a983d2b20"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/claude/claude-expressions.model3.json",
+      "size": 725,
+      "sha256": "22c017d09eefeb0368ffc53ebb0dac4153ae2984348b218e4c0f99cdbc62ec27"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/claude/claude-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/claude/claude-expressions.physics3.json",
+      "size": 6049,
+      "sha256": "289620630ecac41b18471e4876fe79afea078cf1bbfe77ef812bfdbd6b775441"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/claude/claude-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.2048/texture_00.png",
+      "size": 30180287,
+      "sha256": "f72556535fbf1c6e8c2f258416f720ed8e7e0fb52cfd66e07a23ef9e4e77ebd8"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.cdi3.json",
+      "size": 11000,
+      "sha256": "07264e49830ad9d22516c884888ae9efd4ef97ee170c083eafc10460ae5e4c79"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.moc3",
+      "size": 4336128,
+      "sha256": "07dccf365973cc53dff8b0dd86559ea7ee5a2f02d7b7060fcc43234fce1397a0"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.model3.json",
+      "size": 741,
+      "sha256": "06831d9ac853956f06d46778597988f22bfd111d2914cf012ae30bec6fbc2754"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.physics3.json",
+      "size": 6049,
+      "sha256": "289620630ecac41b18471e4876fe79afea078cf1bbfe77ef812bfdbd6b775441"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/doubao/doubao-expressions.2048/texture_00.png",
+      "size": 21313347,
+      "sha256": "5dc9ecc7e45d58f42870ec0023c6aa92a85b4ed2eb4407dee9b0711f02111449"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/doubao/doubao-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/doubao/doubao-expressions.cdi3.json",
+      "size": 9858,
+      "sha256": "c34d3118b44bf43d46ee040f8ccc3eba15ec27e519a508d96e94da2c38577234"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/doubao/doubao-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/doubao/doubao-expressions.moc3",
+      "size": 3212096,
+      "sha256": "f6ab65358cd2761984b1ba5c27397829b30b91aca9dd153627803b96c8c6e482"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/doubao/doubao-expressions.model3.json",
+      "size": 725,
+      "sha256": "83d544b03b7afa3b20747d4bbaa27984d55f5c841ef0f22dfc7f8dbcbd21b8c3"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/doubao/doubao-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/doubao/doubao-expressions.physics3.json",
+      "size": 6049,
+      "sha256": "289620630ecac41b18471e4876fe79afea078cf1bbfe77ef812bfdbd6b775441"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/doubao/doubao-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/gemini/gemini-expressions.2048/texture_00.png",
+      "size": 39882961,
+      "sha256": "fe212619341be79026a6ec7a583f79b86c7cf96b27aee276e1cc368661e4dace"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/gemini/gemini-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/gemini/gemini-expressions.cdi3.json",
+      "size": 10768,
+      "sha256": "0bf573a48cb55187ebe441423ee3bc2ba64a1f4ad8336c067a50fc47402a456b"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/gemini/gemini-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/gemini/gemini-expressions.moc3",
+      "size": 4291072,
+      "sha256": "aa241ff3d938238bc5b2112da08b0bc46bc83621fa03e3780436730fe295b6e7"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/gemini/gemini-expressions.model3.json",
+      "size": 725,
+      "sha256": "7107857c792ef8c7539f61c50d08c2564ea71c34bfb5b3bbfb1e5845b9215bc4"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/gemini/gemini-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/gemini/gemini-expressions.physics3.json",
+      "size": 6049,
+      "sha256": "289620630ecac41b18471e4876fe79afea078cf1bbfe77ef812bfdbd6b775441"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/gemini/gemini-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/glm/glm-expressions.2048/texture_00.png",
+      "size": 39756263,
+      "sha256": "931902b3773d0873cd843b9a441285990b07c774da450941aa796fcfb9d75593"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/glm/glm-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/glm/glm-expressions.cdi3.json",
+      "size": 11545,
+      "sha256": "816eede4f08c35bbd9a27e03a33c28eac4bef53d46c5f9c3b9d61ca250415301"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/glm/glm-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/glm/glm-expressions.moc3",
+      "size": 4187840,
+      "sha256": "ed024f8fca2ecd86dfbaf723296b093af513a8f45b4245b55bfbafdff93f8ae1"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/glm/glm-expressions.model3.json",
+      "size": 701,
+      "sha256": "393a2101aaeee0b89b53afb353d0b94902045cbb66e52cb6682cc2547f1109f0"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/glm/glm-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/glm/glm-expressions.physics3.json",
+      "size": 6049,
+      "sha256": "289620630ecac41b18471e4876fe79afea078cf1bbfe77ef812bfdbd6b775441"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/glm/glm-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/grok/grok-expressions.2048/texture_00.png",
+      "size": 29697388,
+      "sha256": "fbe559c1b228c2c754db7c50dd2b643649aac6f75aa19aa0ee50a185f03e70e8"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/grok/grok-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/grok/grok-expressions.cdi3.json",
+      "size": 11072,
+      "sha256": "805cc4db1d7955824c0530d598f20f07bb9283044c69ddbd0964acac249500cd"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/grok/grok-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/grok/grok-expressions.moc3",
+      "size": 3187072,
+      "sha256": "851958285e1a471bc43750929f487cfdeb51af78ede12f206f6be4d61ffa8f45"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/grok/grok-expressions.model3.json",
+      "size": 709,
+      "sha256": "2e5aa970f4ba80df80a922e558a17aa66a003a3d9dc23c28ab986cf9f0fa80ed"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/grok/grok-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/grok/grok-expressions.physics3.json",
+      "size": 6049,
+      "sha256": "289620630ecac41b18471e4876fe79afea078cf1bbfe77ef812bfdbd6b775441"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/grok/grok-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/kimi/kimi-expressions.2048/texture_00.png",
+      "size": 37503871,
+      "sha256": "f31e27ac7afddebc2456fbff9ea0bb3ea46c0e1d7246e5891bc46dcf4d1a2805"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/kimi/kimi-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/kimi/kimi-expressions.cdi3.json",
+      "size": 10345,
+      "sha256": "aaa8783ab14d900977e89aac52843190ff510992c65fab44c344695c704413fa"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/kimi/kimi-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/kimi/kimi-expressions.moc3",
+      "size": 3869312,
+      "sha256": "976bee1814c169eb5eb447f096fd86a82018abbd6df8779cdae418fe6475e64a"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/kimi/kimi-expressions.model3.json",
+      "size": 709,
+      "sha256": "9f9e7984879ae5a8584c2bbaa9566ce8f8a7a3b08ed284dda52eadadbbceea6e"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/kimi/kimi-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/kimi/kimi-expressions.physics3.json",
+      "size": 6049,
+      "sha256": "289620630ecac41b18471e4876fe79afea078cf1bbfe77ef812bfdbd6b775441"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/kimi/kimi-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/mimo/mimo-expressions.2048/texture_00.png",
+      "size": 26301523,
+      "sha256": "46eeee1ab1f744a175ccc24d0cd7cf82bbcb1abd9f5ecd2bdd2def6b9de5c07e"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/mimo/mimo-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/mimo/mimo-expressions.cdi3.json",
+      "size": 8855,
+      "sha256": "7eae6b32ca3346b3d44cbe965f1d6f57f2dedc1a9cfc4440637d7f14661c3b07"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/mimo/mimo-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/mimo/mimo-expressions.moc3",
+      "size": 3945280,
+      "sha256": "710ba624ac032dc931c1211a585ecc0813fafbd2aa832f7deef10b70703e4d8a"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/mimo/mimo-expressions.model3.json",
+      "size": 1000,
+      "sha256": "35bba457615ebd0870068295ff55ee61f6af96ea2acd013e0122e14de23f8e38"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/mimo/mimo-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/mimo/mimo-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/minimax/minimax-expressions.2048/texture_00.png",
+      "size": 29301618,
+      "sha256": "3305eea8e504eabfb296899098daa34b079409ea481733b4a69583b0adaf2775"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/minimax/minimax-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/minimax/minimax-expressions.cdi3.json",
+      "size": 8855,
+      "sha256": "7eae6b32ca3346b3d44cbe965f1d6f57f2dedc1a9cfc4440637d7f14661c3b07"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/minimax/minimax-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/minimax/minimax-expressions.moc3",
+      "size": 3868288,
+      "sha256": "6ab87e4493f43121e25bf94c497141908dd3824c2d673d2af11f8c31ab3237e8"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/minimax/minimax-expressions.model3.json",
+      "size": 1021,
+      "sha256": "91f0a6715e523567bf973f0fcfa235cdef0ca301377b164a2326a72d053bc4ba"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/minimax/minimax-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/minimax/minimax-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/qwen/qwen-expressions.2048/texture_00.png",
+      "size": 38048377,
+      "sha256": "5f618fc31924fa28ea69341dbfd37ca8264cf76d87f3e1fbc350b5eec13315c6"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/qwen/qwen-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/qwen/qwen-expressions.cdi3.json",
+      "size": 11126,
+      "sha256": "b7b91ac53a3be93caceb628bc8cec41ae3b571549c90b4ada30f320856118395"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/qwen/qwen-expressions.idle.motion3.json",
+      "size": 2282,
+      "sha256": "5f709b9834310a670e1b55b448421568377031f26ad79040925db29da8943990"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/qwen/qwen-expressions.moc3",
+      "size": 4082560,
+      "sha256": "bf17031a11ae6ee07d60d81b6fabcaa012693958722a5b5e945605007d6b527f"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/qwen/qwen-expressions.model3.json",
+      "size": 709,
+      "sha256": "08d5b71e42acc6486b80d508572c346d7ff5aa1f577e115d8a2449a4cd5b7854"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/qwen/qwen-expressions.nod.motion3.json",
+      "size": 1751,
+      "sha256": "bfd9a247d5ec8479145c2dddfd5fdbf03e1c46df8d7460f07badd146c1e19418"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/qwen/qwen-expressions.physics3.json",
+      "size": 6049,
+      "sha256": "289620630ecac41b18471e4876fe79afea078cf1bbfe77ef812bfdbd6b775441"
+    },
+    {
+      "path": "public/models/agentkit-expressions-r3/qwen/qwen-expressions.shake.motion3.json",
+      "size": 1571,
+      "sha256": "9714b72b47dba8e33b6b08d0f9e84c77309a6ce6c98d2a3815c3a59d69163b01"
+    }
+  ]
+}

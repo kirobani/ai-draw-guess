@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "LXGW WenKai";
+  src: url("/fonts/LXGWWenKai-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+/* The upstream family's heaviest face is Medium; weight synthesis adds the
+   requested bold rendering without editing or renaming the font file. */
+:root { font-family: "LXGW WenKai", "Microsoft YaHei", serif; font-weight: 700; font-synthesis: weight; }
+button, input, select, textarea { font-family: inherit; font-weight: 700; }

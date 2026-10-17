@@ -1,0 +1,29 @@
+{
+  "name": "ai-draw-guess",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/test.mjs",
+    "test:assets": "node scripts/test-assets.mjs",
+    "setup:avatars": "node scripts/setup-avatars.mjs"
+  },
+  "engines": {
+    "node": ">=22.9"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "0.1.100",
+    "fflate": "0.8.3"
+  },
+  "description": "Multi-model AI drawing and guessing arena with Live2D avatars",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kirobani/ai-draw-guess.git"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "source": "https://github.com/lxgw/LxgwWenKai",
+  "download": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/main/fonts/TTF/LXGWWenKai-Medium.ttf",
+  "license": "OFL-1.1",
+  "sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
+  "date": "2026-10-08",
+  "rendering": "Unmodified upstream Medium face plus CSS font-weight 700 with weight synthesis; fully local serving."
+}

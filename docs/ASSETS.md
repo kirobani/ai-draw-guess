@@ -2,13 +2,36 @@
 
 本项目使用 11 位 Kit 角色、8192×8192 纹理、9 种表情和绘画姿势。运行文件放在 `public/models/agentkit-expressions-r3/`；其中 MiMo / MiniMax 已采用修正眼睛及眉毛的 r6 资源，文件夹名是统一运行路径。
 
-为保持 Git 历史轻量，模型放在 [avatars-v1 发布附件](https://github.com/kirobani/ai-draw-guess/releases/tag/avatars-v1)。`npm run setup:avatars` 下载压缩包，核对压缩包与每个文件的 SHA-256 后安装。源码仓库中的 `licenses/avatars-manifest.json` 记录全部运行文件和校验和，不包含作者机器上的绝对路径。
+为保持 Git 历史轻量，模型放在 [avatars-v1 发布附件](https://github.com/kirobani/ai-draw-guess/releases/tag/avatars-v1)。[直接下载 avatars-v1.zip](https://github.com/kirobani/ai-draw-guess/releases/download/avatars-v1/avatars-v1.zip)，压缩包约 350 MiB。`npm run setup:avatars` 显示下载进度、核对压缩包与每个文件的 SHA-256 后安装。下载中断会自动重试，失败后重新运行会从 `.local/downloads/` 内的断点继续；校验正确的完整缓存可以重复使用。源码仓库中的 `licenses/avatars-manifest.json` 记录全部运行文件和校验和，不包含作者机器上的绝对路径。
 
-下载受限时可手动下载，然后运行：
+## 下载失败或一直没反应
+
+1. 在浏览器打开上面的发布附件，选择 **avatars-v1.zip**。`Source code (zip)` 只是游戏源码，不包含角色。不要改名后把源码包当作角色包。
+2. 下载完成后**不用手动解压**，在游戏文件夹打开终端。Windows 可以输入下面的命令，把路径替换成自己实际下载的位置：
+
+```powershell
+npm run setup:avatars -- --archive "D:\下载\avatars-v1.zip"
+```
+
+macOS / Linux 示例：
 
 ```bash
 npm run setup:avatars -- --archive "/path/to/avatars-v1.zip"
 ```
+
+3. 看到角色安装成功后，还要按下一节安装 **Cubism Core**。角色包与运行库是两项不同的文件。
+
+常见情况：
+
+| 现象 | 处理 |
+| --- | --- |
+| `fetch failed`、`CONNECT_TIMEOUT`、连接重置 | 先更新到新版安装脚本再重试，或使用浏览器下载后离线安装。浏览器能下载不代表 Node.js 终端使用了相同的代理设置。 |
+| 浏览器也无法下载 GitHub 附件 | 更换能访问 GitHub 发布附件的网络，或由已下载成功的人转交未经修改的 `avatars-v1.zip`，再离线安装；安装器仍会校验原包。 |
+| `角色包校验不通过` / `Archive checksum mismatch` | 文件未下载完整、已损坏或选错包，重新下载 `avatars-v1.zip`。不要跳过校验。 |
+| `尚未安装 Cubism Core` | 按下一节安装官方 SDK 中的 Core；这不是角色包没下载成功。 |
+| `找不到角色模型` | 确认安装命令在当前运行的游戏副本中执行，安装后重启服务并刷新网页。 |
+
+仍有问题时，反馈**执行的命令与最后几行报错**，并说明是浏览器下载失败还是安装时失败。请勿附带 API Key 或 `.local/` 内容。
 
 ## Cubism Core
 

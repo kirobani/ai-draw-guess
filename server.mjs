@@ -62,7 +62,7 @@ const server=http.createServer(async(req,res)=>{
       if(req.headers.origin&&req.headers.origin!==`http://${host}`)return json(res,{error:'不接受跨站请求。'},403);
     }
     const s=session(req,res);
-    if(req.method==='GET'&&path==='/api/health')return json(res,{app:'draw-guess-arena',version:'2.9.1',drawingFormatRepair:true,postRoundBanter:true,characterVoices:1,recordingVersion:2,randomTurnOrder:true,visualHintGuidance:2,lobbyCharacterPreparation:true,categoryDifficulties:true,relayExactPass:true,relayCategoryHints:true,relayShowcase:true,hintModes:HINT_MODES.map(item=>item.id),kitExpressions:9,confidenceExpressions:true,port:PORT,freeHints:true,expandablePanels:true,codexAutoLocate:true,reasoningControls:true,concurrency:12});
+    if(req.method==='GET'&&path==='/api/health')return json(res,{app:'draw-guess-arena',version:'2.9.1',drawingFormatRepair:true,postRoundBanter:true,humanInitiatedBanter:true,characterVoices:1,recordingVersion:2,randomTurnOrder:true,visualHintGuidance:2,lobbyCharacterPreparation:true,categoryDifficulties:true,relayExactPass:true,relayCategoryHints:true,relayShowcase:true,hintModes:HINT_MODES.map(item=>item.id),kitExpressions:9,confidenceExpressions:true,port:PORT,freeHints:true,expandablePanels:true,codexAutoLocate:true,reasoningControls:true,concurrency:12});
     if(req.method==='GET'&&path==='/api/config'){codex=await detectCodex();return json(res,{players:config.players.map(publicPlayer),checks:publicChecks(),avatarAssets,openrouter:{hasKey:hasSharedOpenRouterKey()},presets:PRESETS,characters:CHARACTERS,categories:CATEGORIES,idiomLevels:IDIOM_LEVELS,categoryLevels:CATEGORY_LEVELS,hintModes:HINT_MODES,relayShowcase:true,randomTurnOrder:true,recordingVersion:2,codex:{available:codex.available,loggedIn:codex.loggedIn}});}
     if(req.method==='GET'&&path==='/api/models')return json(res,await modelCatalog());
     if(req.method==='GET'&&path==='/api/state')return json(res,{game:s.game?{...s.game.snapshot(),recordingEnabled:!!s.game.recording,recordingWarning:s.game.recording?.persistenceError||''}:null});
@@ -155,10 +155,11 @@ const server=http.createServer(async(req,res)=>{
     }
     if(path==='/api/action') {
       const g=s.game;if(!g||g.id!==data.gameId)throw new Error('比赛已变更，请刷新页面。');
-      if(['banter-reply','banter-retry','banter-skip'].includes(data.action)){
+      if(['banter-challenge','banter-reply','banter-retry','banter-skip'].includes(data.action)){
         const b=g.mode==='relay'&&g.showcase?.status==='result'?g.showcase.banter:g.phase==='reveal'?g.banter:null;
         if(!b)throw new Error('当前没有互怼环节。');b.check(data);
-        if(data.action==='banter-reply')b.reply(data);
+        if(data.action==='banter-challenge')b.challenge(data);
+        else if(data.action==='banter-reply')b.reply(data);
         else if(data.action==='banter-retry')b.retry(data);
         else b.skip(data);
         return json(res,{ok:true});

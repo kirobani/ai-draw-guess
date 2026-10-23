@@ -18,7 +18,9 @@ npm start
 
 打开 **http://127.0.0.1:3211**，进入 **AI 设置 → 统一 OpenRouter Key**，保存自己的 Key。然后选择选手与型号，点「保存并验证看图 / 绘图」；验证成功后开局。
 
-**Live2D 还有一次安装步骤：**高清角色由 `setup:avatars` 下载（约 389 MB）；Cubism Core 由使用者从 [Live2D 官方 SDK for Web](https://www.live2d.com/en/sdk/download/web/) 下载并接受其许可后安装：
+**Live2D 还有一次安装步骤：**高清角色由 `setup:avatars` 下载（约 350 MiB 压缩包，解压约 389 MiB），现在会显示下载进度、自动重试，中断后再次运行可继续下载。下载失败可用浏览器下载 [avatars-v1.zip](https://github.com/kirobani/ai-draw-guess/releases/download/avatars-v1/avatars-v1.zip)，再按 [离线安装步骤](docs/ASSETS.md#下载失败或一直没反应) 安装；不要下载成 `Source code.zip`。
+
+Cubism Core 由使用者从 [Live2D 官方 SDK for Web](https://www.live2d.com/en/sdk/download/web/) 下载并接受其许可后安装：
 
 ```bash
 npm run setup:avatars -- --sdk "你的 Cubism SDK for Web 解压目录"
@@ -28,6 +30,19 @@ npm run setup:avatars -- --sdk "你的 Cubism SDK for Web 解压目录"
 
 也可复制 `.env.example` 为 `.env`，填写 `OPENROUTER_API_KEY`；网页中单独为某位选手填写的 Key 优先。默认仅 GPT 勾选参赛，可按需要勾选其余角色，避免首次操作就同时调用所有模型。
 
+## 更新已有安装
+
+用 Git 克隆的项目可在游戏文件夹执行：
+
+```bash
+git pull --ff-only
+npm ci
+npm run setup:avatars
+npm start
+```
+
+请先结束并按需导出正在进行的比赛，再关闭旧服务、更新和重启。已安装且校验正确的角色不会重复下载；`.local/` 中的个人设置和 `.env` 不属于 Git 跟踪内容。用源码 ZIP 安装的用户可下载新版源码，并参照 [更新记录](CHANGELOG.md) 核对功能。
+
 ## 玩法
 
 - **单挑 / 多人赛**：最多 11 位 AI 与 1 位玩家围坐画布，画手顺序随机；分数、猜词过程、聊天气泡和历史消息持续可见。
@@ -35,7 +50,7 @@ npm run setup:avatars -- --sdk "你的 Cubism SDK for Web 解压目录"
 - **题库三档**：成语入门 218、进阶 2,000、挑战 29,508 条；其他分类也有三档，入门不少于 200 条。挑战不是所有历史成语的穷尽清单。
 - **提示三种**：完全禁用、指定画面提示、自然读图提醒。提醒针对画面内容与误读，不应解释答案含义；模型可能不完全遵从。
 - **九种角色反应**：待机、画画、画完等待、自信、犹豫、瞎蒙、庆祝、吃瓜、猜错。把握值来自同一次模型回答，没有额外表情请求。
-- **每题互怼**：画手、猜中和没猜中的人互相点名，被点名的玩家可以打字回应或跳过。
+- **每题互怼**：画手、猜中和没猜中的人互相点名，被点名的玩家可以打字回应或跳过。玩家也能主动选一位 AI 开麦，对方必须回应；失败可重试，关闭自动互怼也能使用。普通局揭晓后和接龙投票结束后都可用。
 - **复盘与视频素材**：导出绘图笔画、猜词、时间线、分数、聊天和角色反应，可在素材页重播与重新构图；不会自动剪成成片。
 
 ## 模型和接口

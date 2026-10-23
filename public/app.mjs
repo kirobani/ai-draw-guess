@@ -32,7 +32,7 @@ const playerSeats=createPlayerSeats($('guessers'),{onPreparation:({total,ready,f
 $('retryCharacterPreparation').onclick=()=>playerSeats.retryPrepared();
 const conversation=createConversation($('conversationPanel'));
 bindBanterControls($('actionPanel'),act);bindBanterControls($('results'),act);
-document.querySelector('.final-setup').insertAdjacentHTML('beforebegin','<div class="setup-row banter-setting"><span class="row-label">赛后互动</span><div><label class="check"><input type="checkbox" id="banterEnabled" checked> 开启赛后互怼</label><p class="hint-mode-help">答案或本链接龙投票揭晓后，随机点名互怼；被点名必须接话，你可以亲自回嘴。每次最多两组，可随时跳过。</p></div></div>');
+document.querySelector('.final-setup').insertAdjacentHTML('beforebegin','<div class="setup-row banter-setting"><span class="row-label">赛后互动</span><div><label class="check"><input type="checkbox" id="banterEnabled" checked> 开启自动互怼</label><p class="hint-mode-help">答案或本链接龙投票揭晓后，随机点名互怼，最多两组。你也可以主动选择 AI 开麦，对方必须接话；关闭自动互怼仍可主动点名。</p></div></div>');
 try{$('banterEnabled').checked=localStorage.getItem('drawguess.banter')!=='false';}catch{}
 $('banterEnabled').onchange=()=>{try{localStorage.setItem('drawguess.banter',String($('banterEnabled').checked));}catch{}};
 const banterFilter=document.createElement('option');banterFilter.value='banter';banterFilter.textContent='互怼与回应';$('conversationPanel').querySelector('select').append(banterFilter);
@@ -96,8 +96,8 @@ function resetView(){canvasKey='';actionKey='';resultKey='';autoSent='';localSha
 async function act(action,extra={}){
   const id=game?.id;if(!id)return;
   inFlight++;
-  try{await productionTrace?.flush();await api('/api/action',{gameId:id,action,...extra});await poll();}
-  catch(e){toast(e.message);autoSent='';actionKey='';if(game&&game.phase!=='finished')renderAction();}
+  try{await productionTrace?.flush();await api('/api/action',{gameId:id,action,...extra});await poll();return true;}
+  catch(e){toast(e.message);autoSent='';actionKey='';if(game&&game.phase!=='finished')renderAction();return false;}
   finally{inFlight--;maybeAuto();}
 }
 async function poll(){

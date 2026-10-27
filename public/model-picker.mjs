@@ -1,5 +1,5 @@
 import {paint} from './drawing.mjs';
-import {modelSource,chosenEffort,waitSeconds,effortChoices,EFFORT_LABELS,WAIT_SECONDS,reasoningSummary} from './reasoning.mjs';
+import {modelSource,chosenEffort,waitSeconds,effortChoices,EFFORT_LABELS,WAIT_SECONDS,reasoningSummary,compatibleKimiProfile} from './reasoning.mjs';
 export {modelSource} from './reasoning.mjs';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function matchingModels(p,catalog,showText=false){
@@ -16,7 +16,7 @@ function receiptText(r){
 }
 export function mountModelPicker(row,p,catalog,check){
   const host=row.querySelector('.model-picker'),showText=row.dataset.showText==='true',manualOpen=host.querySelector('.model-manual')?.open;
-  const options=matchingModels(p,catalog,showText),source=modelSource(p),selected=catalog?.models?.find(m=>m.source===source&&m.id===p.model);
+  const options=matchingModels(p,catalog,showText),source=modelSource(p),selected=catalog?.models?.find(m=>m.source===source&&m.id===p.model)||compatibleKimiProfile(p);
   const checked=check?.model===p.model?check:null;
   const vision=checked?.vision.ok?'✓ 识图实测通过':selected?.vision?'目录支持识图 · 待测':selected?.visionUnknown?'识图能力待实测':selected?'不支持识图':'识图能力待确认';
   const drawing=checked?.drawing.ok?'✓ 已返回有效游戏笔画':'游戏绘图待实测';

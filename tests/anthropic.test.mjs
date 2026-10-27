@@ -22,7 +22,7 @@ test('Claude 原生截断优先于 JSON 解析，思考耗尽、半截和可解�
   for(const content of cases){
     const diagnostics=[];
     t.mock.method(globalThis,'fetch',async()=>new Response(JSON.stringify({id:'msg-truncated',model:player.model,stop_reason:'max_tokens',content:[{type:'thinking',thinking:'private-reasoning-fixture'},...content],usage:{output_tokens:8192}})));
-    await assert.rejects(callModel(player,'private-prompt-fixture',image,null,null,{...options,onDiagnostic:d=>diagnostics.push(d)}),/Claude 回复达到输出长度上限，未完整作答/);
+    await assert.rejects(callModel(player,'private-prompt-fixture',image,null,null,{...options,onDiagnostic:d=>diagnostics.push(d)}),/模型回复达到输出长度上限，未完整作答/);
     assert.equal(diagnostics[0].finishReason,'max_tokens');
     assert.equal(diagnostics[0].outputTokens,8192);
     assert.equal(diagnostics[0].ok,false);

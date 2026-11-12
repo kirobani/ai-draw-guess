@@ -7,8 +7,8 @@ import {randomBytes} from 'node:crypto';
 import {Game} from './lib/game.mjs';
 import {RelayGame} from './lib/relay.mjs';
 import {CATEGORIES,IDIOM_LEVELS,CATEGORY_LEVELS} from './lib/words.mjs';
-import {callModel,detectCodex,DEFAULT_PLAYERS,PRESETS,publicPlayer,buildRequest,migrateConfig,getKey} from './lib/providers.mjs';
-import {CHARACTERS,CHARACTER_MAP,characterPrompt,resolveCharacter} from './public/characters.mjs';
+import {callModel,detectCodex,DEFAULT_PLAYERS,PRESETS,CONFIG_VERSION,MAX_CONFIGURED_PLAYERS,publicPlayer,buildRequest,migrateConfig,getKey} from './lib/providers.mjs';
+import {CHARACTERS,CHARACTER_MAP,characterPrompt,characterChoice} from './public/characters.mjs';
 import {modelCatalog} from './lib/model-catalog.mjs';
 import {setSharedOpenRouterKey,hasSharedOpenRouterKey} from './lib/credentials.mjs';
 import {checkKey,checkCapabilities} from './lib/model-checks.mjs';
@@ -20,8 +20,11 @@ import {productionFiles,characterFiles,zipFiles} from './lib/production-export.m
 const ROOT=dirname(fileURLToPath(import.meta.url)),LOCAL=process.env.DRAW_GUESS_DATA_DIR||join(ROOT,'.local');
 await mkdir(LOCAL,{recursive:true});
 const recordings=new RecordingStore(join(LOCAL,'recordings'));
-const avatarAssets={core:existsSync(join(ROOT,'public/vendor/live2dcubismcore.min.js')),models:existsSync(join(ROOT,'public/models/agentkit-expressions-r3/deepseek/deepseek-expressions.model3.json'))};
-let config={version:4,players:structuredClone(DEFAULT_PLAYERS)};
+const avatarAssets={
+  core:existsSync(join(ROOT,'public/vendor/live2dcubismcore.min.js')),
+  models:[...new Set(CHARACTERS.map(c=>c.modelUrl))].every(url=>existsSync(join(ROOT,'public',url.slice(1))))
+};
+let config={players:structuredClone(DEFAULT_PLAYERS)};
 try{const x=JSON.parse(await readFile(join(LOCAL,'config.json'),'utf8'));if(Array.isArray(x.players))config=x;}catch{}
 config=migrateConfig(config);
 try{setSharedOpenRouterKey(JSON.parse(await readFile(join(LOCAL,'credentials.json'),'utf8')).openrouterApiKey);}catch{}
@@ -43,8 +46,8 @@ function session(req,res){
 }
 async function body(req){let chunks=[],size=0;for await(const c of req){size+=c.length;if(size>4_000_000)throw new Error('请求太大。');chunks.push(c);}try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw new Error('请求格式无效。');}}
 function launch(g,fn){Promise.resolve().then(fn).catch(e=>{if(!g.aborted){g.notice=e.message;g.touch();}});}
-const allowedFiles=new Map([['/','index.html'],...['index.html','app.mjs','relay-view.mjs','relay.css','model-picker.mjs','reasoning.mjs','guess-confidence.mjs','drawing.mjs','visual-hints.mjs','drawing-playback.mjs','characters.mjs','characters.html','characters-review.mjs','style.css','fonts.css','help.html','avatar.html','avatar.css','avatar-preview.mjs','avatar-game.mjs','player-seats.mjs','conversation.mjs','panel-drawer.mjs','seat-presentation.mjs','avatar-state.mjs','avatar-renderer.mjs'].map(f=>['/'+f,f])]);
-for(const file of ['production.html','production.css','production.mjs','production-player.mjs','recording-client.mjs','banter-view.mjs'])allowedFiles.set('/'+file,file);
+const allowedFiles=new Map([['/','index.html'],...['index.html','app.mjs','relay-view.mjs','relay.css','model-picker.mjs','reasoning.mjs','guess-confidence.mjs','drawing.mjs','visual-hints.mjs','drawing-playback.mjs','characters.mjs','model-family-avatars.mjs','characters.html','characters-review.mjs','style.css','fonts.css','help.html','avatar.html','avatar.css','avatar-preview.mjs','avatar-game.mjs','player-seats.mjs','conversation.mjs','panel-drawer.mjs','seat-presentation.mjs','avatar-state.mjs','avatar-renderer.mjs'].map(f=>['/'+f,f])]);
+for(const file of ['production.html','production.css','production.mjs','production-player.mjs','recording-client.mjs','banter-view.mjs','cast-nine-avatars.mjs','avatar-runtime.mjs'])allowedFiles.set('/'+file,file);
 const types={html:'text/html; charset=utf-8',mjs:'text/javascript; charset=utf-8',js:'text/javascript; charset=utf-8',css:'text/css; charset=utf-8',json:'application/json; charset=utf-8',png:'image/png',moc3:'application/octet-stream',vert:'text/plain; charset=utf-8',frag:'text/plain; charset=utf-8',ttf:'font/ttf',txt:'text/plain; charset=utf-8'};
 // Only explicitly published runtime assets are served; never follow symlinks or expose .local/source files.
 async function registerAssets(dir){for(const item of await readdir(join(ROOT,'public',dir),{withFileTypes:true})){const file=dir+'/'+item.name;if(item.isDirectory())await registerAssets(file);else if(item.isFile()&&types[item.name.split('.').pop()])allowedFiles.set('/'+file,file);}}
@@ -62,8 +65,8 @@ const server=http.createServer(async(req,res)=>{
       if(req.headers.origin&&req.headers.origin!==`http://${host}`)return json(res,{error:'不接受跨站请求。'},403);
     }
     const s=session(req,res);
-    if(req.method==='GET'&&path==='/api/health')return json(res,{app:'draw-guess-arena',version:'2.9.1',drawingFormatRepair:true,postRoundBanter:true,humanInitiatedBanter:true,characterVoices:1,recordingVersion:2,randomTurnOrder:true,visualHintGuidance:2,lobbyCharacterPreparation:true,categoryDifficulties:true,relayExactPass:true,relayCategoryHints:true,relayShowcase:true,hintModes:HINT_MODES.map(item=>item.id),kitExpressions:9,confidenceExpressions:true,port:PORT,freeHints:true,expandablePanels:true,codexAutoLocate:true,reasoningControls:true,concurrency:12});
-    if(req.method==='GET'&&path==='/api/config'){codex=await detectCodex();return json(res,{players:config.players.map(publicPlayer),checks:publicChecks(),avatarAssets,openrouter:{hasKey:hasSharedOpenRouterKey()},presets:PRESETS,characters:CHARACTERS,categories:CATEGORIES,idiomLevels:IDIOM_LEVELS,categoryLevels:CATEGORY_LEVELS,hintModes:HINT_MODES,relayShowcase:true,randomTurnOrder:true,recordingVersion:2,codex:{available:codex.available,loggedIn:codex.loggedIn}});}
+    if(req.method==='GET'&&path==='/api/health')return json(res,{app:'draw-guess-arena',version:'2.11.0',drawingFormatRepair:true,postRoundBanter:true,humanInitiatedBanter:true,characterVoices:1,recordingVersion:2,randomTurnOrder:true,visualHintGuidance:2,lobbyCharacterPreparation:true,categoryDifficulties:true,relayExactPass:true,relayCategoryHints:true,relayShowcase:true,hintModes:HINT_MODES.map(item=>item.id),kitExpressions:9,confidenceExpressions:true,port:PORT,freeHints:true,expandablePanels:true,codexAutoLocate:true,reasoningControls:true,concurrency:12});
+    if(req.method==='GET'&&path==='/api/config'){codex=await detectCodex();return json(res,{players:config.players.map(publicPlayer),maxConfiguredPlayers:MAX_CONFIGURED_PLAYERS,checks:publicChecks(),avatarAssets,openrouter:{hasKey:hasSharedOpenRouterKey()},presets:PRESETS,characters:CHARACTERS,categories:CATEGORIES,idiomLevels:IDIOM_LEVELS,categoryLevels:CATEGORY_LEVELS,hintModes:HINT_MODES,relayShowcase:true,randomTurnOrder:true,recordingVersion:2,codex:{available:codex.available,loggedIn:codex.loggedIn}});}
     if(req.method==='GET'&&path==='/api/models')return json(res,await modelCatalog());
     if(req.method==='GET'&&path==='/api/state')return json(res,{game:s.game?{...s.game.snapshot(),recordingEnabled:!!s.game.recording,recordingWarning:s.game.recording?.persistenceError||''}:null});
     if(req.method==='GET'&&path==='/api/recordings')return json(res,{recordings:await recordings.list()});
@@ -94,7 +97,7 @@ const server=http.createServer(async(req,res)=>{
       return json(res,{ok:true,hasKey:hasSharedOpenRouterKey(),players:config.players.map(publicPlayer)});
     }
     if(path==='/api/config') {
-      if(!Array.isArray(data.players)||data.players.length>12||data.players.length<1)throw new Error('请保留 1–12 位 AI。');
+      if(!Array.isArray(data.players)||data.players.length>MAX_CONFIGURED_PLAYERS||data.players.length<1)throw new Error(`请保留 1–${MAX_CONFIGURED_PLAYERS} 位 AI 配置。`);
       const catalog=await modelCatalog();
       const ids=new Set();
       const players=data.players.map((p,i)=>{
@@ -107,11 +110,12 @@ const server=http.createServer(async(req,res)=>{
         const sameDestination=old?.provider===p.provider&&(old?.baseUrl||'')===baseUrl;
         const item={id:p.id,name:p.name.trim(),provider:p.provider,model:p.model.trim(),baseUrl,enabled:!!p.enabled,color:/^#[a-f0-9]{6}$/i.test(p.color)?p.color:DEFAULT_PLAYERS[i%5].color,apiKey:p.clearKey?'':String(p.apiKey||(sameDestination?old?.apiKey:'')||'').trim()};
         if(p.keySource&&!p.apiKey&&!p.clearKey){
-          const destinations={qwen:'https://maas.qianwenaiapi.com/compatible-mode/v1',openrouter:'https://openrouter.ai/api/v1'};
+          const destinations={qwen:'https://maas.qianwenaiapi.com/compatible-mode/v1',openrouter:'https://openrouter.ai/api/v1',micu:'https://www.micuapi.ai/v1'};
           if(!['compatible','openrouter'].includes(item.provider)||item.baseUrl!==destinations[p.keySource])throw new Error('只能在同一平台的正式接口内复用密钥。');
           const donor=config.players.find(x=>modelSource(x)===p.keySource&&getKey(x));
           if(!donor)throw new Error('本机还没有保存此平台的密钥，请在接入与密钥设置中填写。');
-          item.apiKey=getKey(donor);
+          // The shared OpenRouter key already applies to this destination. Do not copy it into a per-player override.
+          if(p.keySource!=='openrouter'||!hasSharedOpenRouterKey())item.apiKey=getKey(donor);
         }
         if(p.replyMode!==undefined&&!['fast','thinking'].includes(p.replyMode))throw new Error('回复方式无效。');
         item.replyMode=p.replyMode||old?.replyMode||'fast';
@@ -121,11 +125,11 @@ const server=http.createServer(async(req,res)=>{
         validateControls(item,profile);
         if(item.apiKey.length>1000)throw new Error('API Key 过长。');
         if(p.characterId&&!CHARACTER_MAP[p.characterId]&&p.characterId!=='none')throw new Error('角色选择无效。');
-        item.characterId=p.characterId||resolveCharacter(item)?.id||'none';
+        item.characterId=characterChoice({...item,characterId:p.characterId});
         if(p.provider!=='codex'&&(item.baseUrl||item.enabled||item.apiKey))buildRequest(item,'test',null,profile);
         return item;
       });
-      await writeFile(join(LOCAL,'config.tmp'),JSON.stringify({version:4,players},null,2),'utf8');await rename(join(LOCAL,'config.tmp'),join(LOCAL,'config.json'));config={version:4,players};
+      await writeFile(join(LOCAL,'config.tmp'),JSON.stringify({version:CONFIG_VERSION,players},null,2),'utf8');await rename(join(LOCAL,'config.tmp'),join(LOCAL,'config.json'));config={version:CONFIG_VERSION,players};
       return json(res,{ok:true,players:players.map(publicPlayer),checks:publicChecks()});
     }
     if(path==='/api/test'){

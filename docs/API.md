@@ -15,6 +15,10 @@
 
 型号 ID 必须来自该平台：OpenRouter 的 `厂商/型号` 通常不能直接用于官方接口。可展开「手动填写型号 ID」。千问平台附有资料快照；其他自定义服务不会冒充已有官方能力目录，需自行验证。支持本地 HTTP 回环接口；远程接口要求 HTTPS。
 
+混元默认用 OpenRouter 的 `tencent/hy4`，也可以选 PackyCode 的 `hy4`，另填相应分组的 Key。MiniMax 可选米醋，同样需填该平台的 Key。千问、米醋和 PackyCode 与 OpenRouter 各自计费。
+
+千问的 `qwen4-max-preview` 目前为 Token Plan 专属预览。持有 Token Plan Key 的用户可选「OpenAI 兼容接口」，使用 `https://token-plan.maas.qianwenaiapi.com/compatible-mode/v1` 并手填型号。按量付费 Key 与订阅 Key 各有对应地址。可用期见[千问官方预览说明](https://platform.qianwenai.com/docs/developer-guides/getting-started/latest-model)。
+
 GPT 也走 API 默认值。仅在已安装并登录 Codex CLI 的电脑上，才需要手动改为「Codex 命令行」；无此工具时可忽略，不影响其他玩家。
 
 ## 速度、费用、能力

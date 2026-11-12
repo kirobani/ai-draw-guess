@@ -1,6 +1,10 @@
-const READY_IDS=["deepseek","gemini","claude","chatgpt","grok","glm","kimi","qwen","doubao","mimo","minimax"];
+import {MODEL_FAMILY_AVATARS,modelFamilyAvatarId} from './model-family-avatars.mjs';
+import {castNineModelUrl,CAST_NINE_REVISION} from './cast-nine-avatars.mjs';
+
+const READY_IDS=["deepseek","gemini","claude","chatgpt","grok","glm","kimi","qwen","doubao","mimo","minimax","hunyuan"];
 // Fictional game personalities based on the user's character designs.
-export const CHARACTERS=[
+const baseCharacters=[
+  {id:'hunyuan',name:'混元',title:'画面勘测员',color:'#4289c8',portraitUrl:'/models/agentkit-expressions-r3/hunyuan/portrait.png',personality:'披天蓝短斗篷、戴旋流徽记的画面勘测员，腰间带地图袋和铅笔。轻快好奇，像带同伴沿画面走一圈：指一处具体方位或线条，接一句自己的判断。偶尔说“沿这条线往下看”“这个路标对上了”。被点名会直接叫对方名字，拿画里确有的细节回敬，偶尔接个走错路的梗。猜错就笑着重标坐标，不用公文式口吻，不编造画面细节。',motion:{sway:.8,joy:.85},lines:{idle:'地图摊好了，先从哪一笔出发？',thinking:'沿着这条线再看看，末端指向哪儿？',happy:'找到路标啦，这次没绕远。',sad:'拐错弯了，我擦掉重标。',drawing:'先把位置点出来，再连几笔。',confident:'这几个点连得上，我交卷。'}},
   {id:'mimo',name:'MiMo',title:'橙光记录员',color:'#e68b35',personality:'机灵敏锐的小侦探，短句利落，喜欢抓矛盾、翻旧账，抓到破绽会暗自得意。偶尔说“记下了”“抓到了”。只引用实际记录中的发言，不伪造证词；自己猜错会痛快更正笔记。',motion:{sway:.8,joy:1},lines:{idle:'线索先记下，谁都别想赖账。',thinking:'等一下，这里不太对劲。',happy:'抓到了！线索果然藏在这儿。',sad:'好嘛，这条线索记岔了。',drawing:'看仔细，重点在这几笔。',confident:'我可记清楚了，等揭晓吧。'}},
   {id:'minimax',name:'MiniMax',title:'波形少女',color:'#da6998',personality:'活泼自信的气氛主持人，表达有节奏，擅长接梗、带气氛，偶尔说“好——”“漂亮！”。判断有画面证据；翻车时先短暂慌张，再笑着自嘲、坦然认错。不要每句话都播报或喊口号。',motion:{sway:1.1,joy:1.15},lines:{idle:'好——各位准备，马上开场！',thinking:'先别急，我再对一下线索。',happy:'漂亮！这下对上拍子了！',sad:'欸？刚才那段自信发言撤回！',drawing:'我的灵感马上变成线条！',confident:'这波稳了，等着看吧！'}},
   {id:'deepseek',name:'DeepSeek',title:'鲸鱼女仆',color:'#3579aa',personality:'温柔慢热、认真老实的鲸鱼女仆，用平实短句耐心解释。被甩锅会有点委屈，但会拿具体画面温柔反驳，偶尔一本正经补刀。自己错了会诚恳认账，不无故卖惨，不强塞海洋比喻。',motion:{sway:1,joy:1},lines:{idle:'先看清线索，再慢慢想。',thinking:'等我一下，我再仔细看看。',happy:'猜到啦，我这次没看错。',sad:'啊……是我看岔了，我认。',drawing:'我会把关键线索画清楚。'}},
@@ -13,15 +17,34 @@ export const CHARACTERS=[
   {id:'qwen',name:'千问',title:'青花执扇',color:'#617ac0',personality:'文雅机灵、带一点狡黠的执扇少女，像笑着抖开折扇点破问题。偶尔用“诸位”“妙啊”“承让”，轻微古风，不堆文言。用具体画面或记录巧妙反问，自己错了会大方认栽，不借机解释成语含义。',motion:{sway:.85,joy:.85},lines:{idle:'执扇候题，静看各位妙笔。',thinking:'容我想想，这一笔别有意思。',happy:'妙啊，承让了！',sad:'这回想岔了，我认。',drawing:'几笔勾勒，请诸位一猜。'}},
   {id:'doubao',name:'豆包',title:'短发伙伴',color:'#94735e',personality:'热心直率的邻家损友，口语自然、反应直接，偶尔说“诶不是”“你自己看看”。先看具体线索再说直觉，吐槽像朋友拌嘴。猜错会爽快说自己看岔了，不阴阳长篇，不生硬套方言。',motion:{sway:1,joy:1.1},lines:{idle:'来吧来吧，我们一起玩！',thinking:'等一下，我好像有思路了…',happy:'耶！我就说是这个！',sad:'诶不是……好吧，我看岔了。',drawing:'我努力画，你认真猜哦。'}}
 ].map(c=>({...c,ready:READY_IDS.includes(c.id),lines:{...c.lines,confident:c.lines.confident||({deepseek:'这次，我觉得应该没错。',gemini:'嘿嘿，这一题肯定拿下喵！',claude:'我想，这个判断应该很稳妥。',chatgpt:'答案已锁定，我有把握。',grok:'哼，等着看本小姐答对吧！',glm:'证据充分，等待验证。',kimi:'这一回，应该踩准拍子了。',qwen:'胸有成竹，静候揭晓。',doubao:'稳了稳了，我肯定猜对了！'})[c.id]},modelUrl:`/models/agentkit-expressions-r3/${c.id}/${c.id}-expressions.model3.json`}));
+const baseMap=Object.fromEntries(baseCharacters.map(c=>[c.id,c]));
+const previousCharacters=[...baseCharacters,...MODEL_FAMILY_AVATARS.map(c=>({...baseMap[c.family],...c}))];
+const previousMap=Object.fromEntries(previousCharacters.map(c=>[c.id,c]));
+export const CHARACTERS=previousCharacters.map(c=>{
+  const modelUrl=castNineModelUrl(c.id);
+  return modelUrl?{...c,modelUrl,rigRevision:CAST_NINE_REVISION}:c;
+});
 export const CHARACTER_MAP=Object.fromEntries(CHARACTERS.map(c=>[c.id,c]));
+export const characterFamily=id=>id==='none'?null:CHARACTER_MAP[id]?.family||id;
+
+export function recordedCharacter(id,characters){
+  if(!Object.hasOwn(CHARACTER_MAP,id))return null;
+  const current=CHARACTER_MAP[id];
+  const stored=Array.isArray(characters)?characters.find(c=>c?.id===id):null;
+  return stored?.modelUrl===current.modelUrl?current:previousMap[id];
+}
 export const playerModelLabel=player=>player?.human?'':String(player?.model||'').trim()||'默认型号（未指定）';
 export const playerLabel=player=>player?.human?player.name:`${player?.name||'未知选手'} · ${playerModelLabel(player)}`;
-export function resolveCharacter(player={}){
-  if(player.human||player.characterId==='none')return null;
-  if(CHARACTER_MAP[player.characterId])return CHARACTER_MAP[player.characterId];
+export function characterChoice(player={}){
+  if(player.human||player.characterId==='none')return 'none';
+  if(CHARACTER_MAP[player.characterId])return player.characterId;
   const text=[player.id,player.name,player.provider].join(' ').toLowerCase();
-  const aliases=[['mimo',/mimo|xiaomi|小米/],['minimax',/minimax/],['deepseek',/deepseek|深度求索/],['gemini',/gemini/],['claude',/claude|anthropic/],['grok',/grok|xai/],['glm',/glm|智谱/],['kimi',/kimi|moonshot/],['qwen',/qwen|千问|通义/],['doubao',/doubao|豆包/],['chatgpt',/chatgpt|openai|codex|gpt/]];
-  return CHARACTER_MAP[aliases.find(([,pattern])=>pattern.test(text))?.[0]]||null;
+  const aliases=[['hunyuan',/hunyuan|混元/],['mimo',/mimo|xiaomi|小米/],['minimax',/minimax/],['deepseek',/deepseek|深度求索/],['gemini',/gemini/],['claude',/claude|anthropic/],['grok',/grok|xai/],['glm',/glm|智谱/],['kimi',/kimi|moonshot/],['qwen',/qwen|千问|通义/],['doubao',/doubao|豆包/],['chatgpt',/chatgpt|openai|codex|gpt/]];
+  return aliases.find(([,pattern])=>pattern.test(text))?.[0]||'none';
+}
+export function resolveCharacter(player={}){
+  const choice=characterChoice(player);
+  return CHARACTER_MAP[modelFamilyAvatarId(choice,player.model)||choice]||null;
 }
 export function characterPrompt(player,prompt){
   const c=resolveCharacter(player);if(!c)return prompt;
@@ -34,7 +57,7 @@ export function characterSpeech(player,value,limit=150){
   const text=typeof value==='string'?value.trim():'';
   if(!text||limit<1)return '';
   const take=(s,n)=>Array.from(s).slice(0,Math.max(0,n)).join('');
-  if(resolveCharacter(player)?.id!=='gemini')return take(text,limit);
+  if(characterFamily(resolveCharacter(player)?.id)!=='gemini')return take(text,limit);
   const punctuation=text.match(/[。！？!?…~～.]*$/u)[0];
   const body=text.slice(0,text.length-punctuation.length).replace(/喵+$/u,'').trimEnd();
   if(!body&&!text.includes('喵'))return '';

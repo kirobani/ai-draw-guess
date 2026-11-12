@@ -1,0 +1,25 @@
+{
+  "archives": [
+    {
+      "name": "avatars-v2-1.zip",
+      "url": "https://github.com/kirobani/ai-draw-guess/releases/download/v1.2.0/avatars-v2-1.zip",
+      "sha256": "ff3a02d060c71f5b8281f4cbb0a188d7930a287404b3df17d15dcf013623f62a",
+      "bytes": 195018794,
+      "files": 106
+    },
+    {
+      "name": "avatars-v2-2.zip",
+      "url": "https://github.com/kirobani/ai-draw-guess/releases/download/v1.2.0/avatars-v2-2.zip",
+      "sha256": "6b6a6fe0349e35064a62ca9acaabe8d7c6b409acb0ff64580fd803ceafbe6d07",
+      "bytes": 174541039,
+      "files": 105
+    },
+    {
+      "name": "avatars-v2-3.zip",
+      "url": "https://github.com/kirobani/ai-draw-guess/releases/download/v1.2.0/avatars-v2-3.zip",
+      "sha256": "0da8a558b42ece381db40384c0bdcf48007c4ac5c5017348e9ee9231c68f070f",
+      "bytes": 166720273,
+      "files": 105
+    }
+  ]
+}

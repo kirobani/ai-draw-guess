@@ -8,11 +8,22 @@ import {Game} from '../lib/game.mjs';
 import {RelayGame} from '../lib/relay.mjs';
 import {MatchRecording,RecordingStore,readJournal} from '../lib/recording.mjs';
 import {productionFiles,zipFiles} from '../lib/production-export.mjs';
+import {CHARACTER_MAP,recordedCharacter} from '../public/characters.mjs';
 const players=[{id:'a',name:'DeepSeek',characterId:'deepseek',model:'test/ds',provider:'compatible',apiKey:'DO-NOT-EXPORT-THIS-KEY'},{id:'b',name:'千问',characterId:'qwen',model:'test/qwen'}];
 const words=Array.from({length:8},()=>({answer:'西瓜',category:'食物'}));
 const shape=x=>({type:'ellipse',x,y:300,rx:100,ry:70,width:5,color:'#202633'});
 const bytes=Buffer.alloc(24);Buffer.from('89504e470d0a1a0a','hex').copy(bytes);bytes.writeUInt32BE(1000,16);bytes.writeUInt32BE(650,20);const image='data:image/png;base64,'+bytes.toString('base64');
 const basic=opts=>new Game({players,human:false,words,category:'食物',orderRandom:n=>n-1,revealDelay:0,run:async(_p,_prompt,img)=>img?{guess:'西瓜',confidence:88}:{shapes:[shape(200)]},...opts});
+
+test('旧录像保留录制时的 Live2D，新录像记下新版九态',()=>{
+ const game=basic(),recording=new MatchRecording(game);
+ const current=recording.meta.characters.find(c=>c.id==='deepseek');
+ assert.equal(current.modelUrl,CHARACTER_MAP.deepseek.modelUrl);
+ assert.equal(recordedCharacter('deepseek',[current]).rigRevision,'live2d-all-characters-r1');
+ assert.match(recordedCharacter('deepseek').modelUrl,/agentkit-expressions-r3/);
+ assert.match(recordedCharacter('sol').modelUrl,/model-family-live2d-r1/);
+ assert.equal(recordedCharacter('deepseek',[{id:'deepseek',modelUrl:'/unrelated.mjs'}]),recordedCharacter('deepseek'));
+});
 
 test('记录所有改画、提示、提交和揭晓，保持对战公开状态原有保密边界',async()=>{
   let draw=0,guess=0;const g=basic({run:async(_p,_prompt,img)=>img?{guess:++guess<3?'苹果':'西瓜',reason:'右边的果皮',confidence:81,receipt:{requestedModel:'test/qwen',responseModel:'actual/qwen',apiKey:'DO-NOT-EXPORT-THIS-KEY'}}:{shapes:[shape(200+ ++draw*100)],hint:draw>1?'注意右边的外轮廓':'',hints:draw>1?{b:'那不是苹果蒂，看长条纹'}:{}}});

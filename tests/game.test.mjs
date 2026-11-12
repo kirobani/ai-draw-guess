@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {Game} from '../lib/game.mjs';
 import {isCorrect} from '../lib/words.mjs';
 import {validateShapes,guessPrompt} from '../lib/shapes.mjs';
-import {buildRequest,publicPlayer} from '../lib/providers.mjs';
+import {buildRequest,publicPlayer,EXTRA_PLAYERS} from '../lib/providers.mjs';
 const players=[{id:'a',name:'A',provider:'codex',model:'test'},{id:'b',name:'B',provider:'codex',model:'test'}];
 const shapes=[{type:'ellipse',x:500,y:300,rx:100,ry:80,color:'#202633',width:5}];
 // Header fixture is used only for engine tests. Browser integration uses a real canvas PNG.
@@ -12,6 +12,27 @@ const words=Array.from({length:20},()=>({answer:'西瓜',category:'食物',alias
 const create=(opts={})=>new Game({orderRandom:n=>n-1,players,human:true,rounds:1,category:'食物',words,revealDelay:0,run:async(p,prompt,img)=>img?{guess:'西瓜',reason:'果皮',elapsed:1}:{shapes,hint:'',elapsed:1},...opts});
 
 test('人类作画：猜手得分与画手分同步，每人只能提交一次',async()=>{const g=create();await g.next();assert.equal(g.phase,'drawing');await g.beginGuess({image,shapes});assert.equal(g.phase,'reveal');assert.equal(g.players[0].drawScore,6);assert.equal(g.players[1].guessScore,3);assert.equal(g.players[2].guessScore,3);assert.throws(()=>g.record('a','西瓜'));});
+
+test('更多型号可一起参赛，每个独立作答和计分',async()=>{
+ const seen=[];
+ const g=create({players:EXTRA_PLAYERS,run:async player=>{
+  seen.push([player.id,player.model]);
+  return {guess:player.id==='claude-haiku'?'香蕉':'西瓜',reason:'看图作答',confidence:80};
+ }});
+ await g.next();await g.beginGuess({image,shapes});
+ assert.equal(g.players.length,EXTRA_PLAYERS.length+1);
+ assert.equal(g.phase,'review');
+ assert.equal(Object.keys(g.results).length,EXTRA_PLAYERS.length);
+ assert.deepEqual(seen.map(([id])=>id),EXTRA_PLAYERS.map(p=>p.id));
+ assert.equal(g.results['codex-sol-extra'].points,3);
+ assert.equal(g.results['claude-opus'].points,3);
+ assert.equal(g.results['claude-haiku'].points,0);
+ assert.equal(g.results['claude-sonnet'].points,3);
+ assert.notEqual(g.results['claude-opus'],g.results['claude-haiku']);
+ assert.equal(g.results['gemini-carbon'].points,3);
+ assert.equal(g.artist.drawScore,(EXTRA_PLAYERS.length-1)*3);
+ g.finish();
+});
 test('AI 画手不猜自己的画，其他猜手只收到盲猜信息',async()=>{const calls=[];const g=create({human:false,run:async(p,prompt,img)=>{calls.push({p,prompt,img});return img?{guess:'西瓜'}:{shapes};}});await g.next();assert.equal(g.snapshot().answer,null);await g.beginGuess({image});const guesses=calls.filter(c=>c.img);assert.equal(guesses.length,1);assert(guesses.every(c=>c.p.id!==g.artist.id));assert.equal(g.results[g.artist.id],undefined);for(const c of guesses){assert(!c.prompt.includes('西瓜'));assert(!c.prompt.includes('shapes'));}assert.equal(g.artist.drawScore,3);assert.equal(g.artist.guessScore,0);assert.equal(g.phase,'reveal');});
 test('三次机会 3/2/1 递减，只给未猜中的选手重新请求',async()=>{let calls=0;const g=create({run:async()=>{calls++;return {guess:calls===1||calls===4?'西瓜':'香蕉'};}});await g.next();await g.beginGuess({image,shapes});assert.equal(g.phase,'review');assert.equal(g.results.a.points,3);await g.revise();await g.beginGuess({image,shapes});assert.equal(g.phase,'review');await g.revise();await g.beginGuess({image,shapes});assert.equal(g.phase,'reveal');assert.equal(calls,4);assert.equal(g.results.b.points,1);assert.equal(g.artist.drawScore,4);});
 test('AI 结果保密到揭晓；只传递各自错误历史',async()=>{const seen=[];const g=create({players:[...players,{id:'c',name:'C',provider:'codex'}],run:async(p,prompt,img)=>{if(!img)return {shapes};seen.push({id:p.id,prompt});return {guess:p.id==='b'?'秘密猜测乙':'秘密猜测丙'};}});await g.next();g.phase='reveal';await g.next();await g.beginGuess({image});const snapshot=g.snapshot();assert.equal(snapshot.results.a,undefined);assert.deepEqual(snapshot.results.b.history,[]);assert.equal(snapshot.answer,null);g.humanGuess('错误');await g.revise();await g.beginGuess({image});assert(seen[2].prompt.includes('秘密猜测乙'));assert(!seen[2].prompt.includes('秘密猜测丙'));assert(seen[3].prompt.includes('秘密猜测丙'));});

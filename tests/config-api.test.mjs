@@ -18,7 +18,7 @@ test('fresh install supports one shared key, per-player overrides, endpoint isol
   try{
     let ready=false;for(let i=0;i<150;i++){try{await api('/api/health');ready=true;break;}catch{await new Promise(r=>setTimeout(r,100));}}
     assert(ready,log);
-    const initial=await api('/api/config');assert.equal(initial.players.length,11);assert(initial.players.every(p=>p.provider==='openrouter'&&!p.hasKey));
+    const initial=await api('/api/config');assert.equal(initial.players.length,21);assert.equal(initial.players.filter(p=>p.optional).length,9);assert(initial.players.every(p=>p.provider==='openrouter'&&!p.hasKey));
     const saved=await api('/api/openrouter-key',{apiKey:secret});assert(saved.hasKey);assert(saved.players.every(p=>p.hasKey));
     const persisted=JSON.parse(await readFile(join(data,'credentials.json'),'utf8'));assert.equal(persisted.openrouterApiKey,secret);
     const players=initial.players.map(p=>({...p,enabled:false}));players[0]={...players[0],provider:'compatible',baseUrl:'https://example.test/v1'};

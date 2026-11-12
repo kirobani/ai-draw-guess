@@ -1,19 +1,22 @@
 import {mountProduction} from './production-player.mjs';
-import {CharacterView} from './avatar-renderer.mjs';
-import {CHARACTER_MAP} from './characters.mjs';
-const $=id=>document.getElementById(id);let player,view,characterId='',avatarHost=null;
+import {CharacterView} from './avatar-runtime.mjs';
+import {recordedCharacter} from './characters.mjs';
+const $=id=>document.getElementById(id);let player,view,characterId='',avatarHost=null,recordedCast;
 async function get(url){const r=await fetch(url,{cache:'no-store'}),d=await r.json();if(!r.ok)throw new Error(d.error||'读取记录失败。');return d;}
 function frame({view:v,avatarHost:host}){
-  const c=CHARACTER_MAP[v.player?.characterId];
+  const c=recordedCharacter(v.player?.characterId,recordedCast);
   if(!c){view?.destroy();view=null;characterId='';host.textContent=v.player?.human?'✎':'✦';return;}
   if(characterId!==c.id||avatarHost!==host){
-    view?.destroy();host.replaceChildren();const canvas=document.createElement('canvas');canvas.setAttribute('aria-label',c.name+' 的回放角色');host.append(canvas);characterId=c.id;avatarHost=host;
+    view?.destroy();view=null;host.replaceChildren();characterId=c.id;avatarHost=host;
+    if(c.portraitUrl&&!c.ready){const portrait=new Image();portrait.src=c.portraitUrl;portrait.alt=c.name+'的立绘';portrait.style.cssText='width:100%;height:100%;object-fit:contain';host.append(portrait);return;}
+    const canvas=document.createElement('canvas');canvas.setAttribute('aria-label',c.name+' 的回放角色');host.append(canvas);characterId=c.id;avatarHost=host;
     view=new CharacterView(canvas,{modelUrl:c.modelUrl,motion:c.motion,framing:'portrait',onError:()=>{$('productionStatus').textContent='画作和文字可正常回放；角色加载失败，可刷新重试。';}});view.load();
-  }view.setState(v.expression);
+  }view?.setState(v.expression);
 }
 function load(data,id=''){
   if(!data?.recording?.events?.length)throw new Error('这是旧版结果复盘，没有完整素材时间线。请使用升级后的新局记录。');
   player?.destroy();view?.destroy();view=null;characterId='';avatarHost=null;
+  recordedCast=data.recording.characters;
   player=mountProduction($('productionRoot'),data,{onFrame:frame});window.drawGuessProduction=player;
   for(const [button,type] of [['downloadProduction','production'],['downloadCharacters','characters']]){const a=$(button);a.hidden=!id;a.href=`/api/${type}?id=${encodeURIComponent(id)}`;a.setAttribute('download','');}
   $('productionStatus').textContent=`${new Date(data.recording.startedAt).toLocaleString('zh-CN')} · ${data.recording.events.length} 条记录 · ${Object.keys(data.recording.assets).length} 版画作。角色资源较大，同一套角色保存一次即可。${data.recording.status==='interrupted'?' 这场对局曾中断，当前显示已保存部分。':''}`;

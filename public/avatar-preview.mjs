@@ -1,15 +1,21 @@
-import {CharacterView} from './avatar-renderer.mjs';
+import {CharacterView} from './avatar-runtime.mjs';
 import {CHARACTERS,CHARACTER_MAP} from './characters.mjs';
 const $=id=>document.getElementById(id),labels={"idle":"待机","drawing":"画画","finished":"画完等待","confident":"自信","uncertain":"犹豫","random":"瞎蒙","happy":"庆祝","spectator":"吃瓜","sad":"猜错"};
 let paused=false,eyesClosed=false,framing='portrait',currentState='idle',view;
 const selector=$('characterSelect');
 selector.innerHTML=CHARACTERS.map(c=>`<option value="${c.id}">${c.name} · ${c.title}</option>`).join('');
 async function select(id){
- const c=CHARACTER_MAP[id]||CHARACTERS[0];selector.value=c.id;view?.destroy();
+ const c=CHARACTER_MAP[id]||CHARACTERS[0];selector.value=c.id;view?.destroy();view=null;document.querySelector('.avatar-portrait')?.remove();
  const url=new URL(location.href);url.searchParams.set('character',c.id);history.replaceState(null,'',url);
  const old=$('avatarCanvas'),canvas=document.createElement('canvas');canvas.id='avatarCanvas';canvas.setAttribute('aria-label',c.name+' Live2D 角色');old.replaceWith(canvas);
  document.title=c.name+' · 角色预览';document.querySelector('.avatar-stage').setAttribute('aria-label',c.name+' 动作预览');$('characterName').textContent=c.name+'.';$('characterIntro').textContent=c.personality;$('characterNumber').textContent=String(CHARACTERS.indexOf(c)+1).padStart(2,'0')+' / '+String(CHARACTERS.length).padStart(2,'0');$('stageName').textContent=c.name.toUpperCase();$('stageTitle').textContent=c.title;
  $('loadStatus').hidden=false;$('loadStatus').textContent='正在唤醒 '+c.name+'…';$('modelStatus').textContent='正在加载模型…';
+ const still=!!c.portraitUrl&&!c.ready;
+ document.querySelectorAll('[data-expression],.pose-controls input,.avatar-actions button,#framingButton').forEach(button=>{button.disabled=still;});
+ if(still){
+  const portrait=new Image();portrait.className='avatar-portrait';portrait.src=c.portraitUrl;portrait.alt=c.name+'的立绘';
+  canvas.hidden=true;canvas.after(portrait);$('loadStatus').hidden=true;$('modelStatus').textContent='立绘预览 · Live2D 制作中';$('stateLabel').textContent='立绘';return;
+ }
  view=new CharacterView(canvas,{modelUrl:c.modelUrl,motion:c.motion,framing,onReady:()=>{$('loadStatus').hidden=true;$('modelStatus').textContent='Kit 九表情高清版 · 已加载';},onError:e=>{$('loadStatus').hidden=false;$('loadStatus').textContent=e.message;}});
  state(currentState);view.setPaused(paused);pose();await view.load();
 }

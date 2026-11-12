@@ -1,6 +1,6 @@
 # AI 你画我猜 · AI Draw & Guess
 
-把 11 家 AI 请到同一张画桌：你画它们猜、它们画你猜，也可以一起玩画画接龙。角色有各自的性格、高清 Live2D 表情和赛后互怼。
+把 12 家 AI 请到同一张画桌：你画它们猜、它们画你猜，也可以一起玩画画接龙。角色有各自的性格、高清 Live2D 表情和赛后互怼。
 
 **本地运行 · 自带 API Key · 默认 OpenRouter · 中文界面**
 
@@ -12,13 +12,12 @@
 git clone https://github.com/kirobani/ai-draw-guess.git
 cd ai-draw-guess
 npm ci
-npm run setup:avatars
 npm start
 ```
 
 打开 **http://127.0.0.1:3211**，进入 **AI 设置 → 统一 OpenRouter Key**，保存自己的 Key。然后选择选手与型号，点「保存并验证看图 / 绘图」；验证成功后开局。
 
-**Live2D 还有一次安装步骤：**高清角色由 `setup:avatars` 下载（约 350 MiB 压缩包，解压约 389 MiB），现在会显示下载进度、自动重试，中断后再次运行可继续下载。下载失败可用浏览器下载 [avatars-v1.zip](https://github.com/kirobani/ai-draw-guess/releases/download/avatars-v1/avatars-v1.zip)，再按 [离线安装步骤](docs/ASSETS.md#下载失败或一直没反应) 安装；不要下载成 `Source code.zip`。
+**安装 Live2D** 时，在游戏文件夹另行运行 `npm run setup:avatars`。新版 21 套角色资源分成三个 ZIP，共约 511 MiB。安装器会核对文件、显示下载进度并支持断点续传。也可到 [v1.2.0 发布页](https://github.com/kirobani/ai-draw-guess/releases/tag/v1.2.0) 下载三个 `avatars-v2-*.zip`，再按[离线安装步骤](docs/ASSETS.md#离线安装)安装。
 
 Cubism Core 由使用者从 [Live2D 官方 SDK for Web](https://www.live2d.com/en/sdk/download/web/) 下载并接受其许可后安装：
 
@@ -29,6 +28,12 @@ npm run setup:avatars -- --sdk "你的 Cubism SDK for Web 解压目录"
 脚本寻找该目录下的 `Core/live2dcubismcore.min.js`。源码库不包含此专有运行库；没装好角色时，游戏逻辑与 API 设置仍可运行。离线安装、版本与许可见 [角色资源说明](docs/ASSETS.md)。
 
 也可复制 `.env.example` 为 `.env`，填写 `OPENROUTER_API_KEY`；网页中单独为某位选手填写的 Key 优先。默认仅 GPT 勾选参赛，可按需要勾选其余角色，避免首次操作就同时调用所有模型。
+
+### 选手列表空白，AI 设置也点不开？
+
+v1.2.0 以前的版本存在启动问题：缺少或未能加载 `public/vendor/live2dcubismcore.min.js` 时，角色模块可能让整个首页停止初始化，控制台会显示 `Live2DCubismCore is not defined`。这和 API Key 无关；仅下载角色压缩包也不包含这个核心库。
+
+请按下方步骤更新并重启游戏，再用 **Ctrl+F5** 刷新页面。新版在缺少角色资源时仍能配置 API 和选择选手；需要显示 Live2D 时，再按上面的官方 SDK 安装步骤补齐 Core。请通过启动游戏后给出的 `http://127.0.0.1:3211` 地址访问，不要直接双击 `public/index.html`。
 
 ## 更新已有安装
 
@@ -41,11 +46,12 @@ npm run setup:avatars
 npm start
 ```
 
-请先结束并按需导出正在进行的比赛，再关闭旧服务、更新和重启。已安装且校验正确的角色不会重复下载；`.local/` 中的个人设置和 `.env` 不属于 Git 跟踪内容。用源码 ZIP 安装的用户可下载新版源码，并参照 [更新记录](CHANGELOG.md) 核对功能。
+请先结束并按需导出正在进行的比赛，再关闭旧服务、更新和重启。已安装且校验正确的角色不会重复下载。旧版角色仍保留给旧对局，新版角色需要安装一次；`.local/` 中的个人设置和 `.env` 不属于 Git 跟踪内容。用源码 ZIP 安装的用户可下载新版源码，并参照 [更新记录](CHANGELOG.md) 核对功能。
 
 ## 玩法
 
-- **单挑 / 多人赛**：最多 11 位 AI 与 1 位玩家围坐画布，画手顺序随机；分数、猜词过程、聊天气泡和历史消息持续可见。
+- **单挑 / 多人赛**：每局最多 13 位选手（可包含 1 位玩家），围坐画布。画手顺序随机，分数、猜词过程、聊天气泡和历史消息持续可见。
+- **更多型号**：常规阵容外有 Astra、Luna、Sol、Terra、Claude Opus／Sonnet／Haiku／Fable 和 Gemini Carbon，首次安装和升级时默认不选。GPT、Claude、Gemini 系列可按型号自动匹配不同形象。
 - **画画接龙**：每人拥有一条随机传递链，交替画图与猜词，最后逐棒展示、投票与互相甩锅。首尾词完全相同时自动通过。
 - **题库三档**：成语入门 218、进阶 2,000、挑战 29,508 条；其他分类也有三档，入门不少于 200 条。挑战不是所有历史成语的穷尽清单。
 - **提示三种**：完全禁用、指定画面提示、自然读图提醒。提醒针对画面内容与误读，不应解释答案含义；模型可能不完全遵从。
@@ -62,16 +68,17 @@ npm start
 | GPT | `openai/gpt-6.1-sol` |
 | Claude | `anthropic/claude-sonnet-5.5` |
 | Gemini | `google/gemini-4-argon` |
-| DeepSeek | `deepseek/deepseek-v4.1-flash` |
+| DeepSeek | `deepseek/deepseek-v4.1-flash-1017` |
 | Grok | `x-ai/grok-4.7` |
 | GLM | `z-ai/glm-5.3-flashx` |
-| Kimi | `moonshotai/kimi-k3` |
+| Kimi | `moonshotai/kimi-k3.1-pro` |
 | 千问 | `qwen/qwen3.8-flash` |
 | 豆包 | `bytedance-seed/seed-2.0-lite` |
 | MiMo | `xiaomi/mimo-v2.6-pro` |
-| MiniMax | `minimax/minimax-m3` |
+| MiniMax | `minimax/minimax-m3.1-flash` |
+| 混元 | `tencent/hy4` |
 
-默认值核对日期：2026-10-17。可用性、价格和地区限制随平台变化；目录支持不等于账户已有权限，也不保证模型每次都能返回有效笔画。每个选手都有独立接口地址、Key、型号、思考强度与超时设置，详见 [API 配置](docs/API.md)。
+默认值核对日期：2026-11-12。已保存的型号和接入方式会保留。可用性、价格和地区限制随平台变化；目录支持不等于账户已有权限，也不保证模型每次都能返回有效笔画。每个选手都有独立接口地址、Key、型号、思考强度与超时设置，详见 [API 配置](docs/API.md)。
 
 **识图**需要图片输入；**画图**是模型生成简笔画 JSON，由游戏绘制，不需要额外的原生图片生成接口。模型的身份和 Live2D 角色可分别选择。GPT 可选本机 Codex CLI，但默认不依赖它，也不会读取其他项目的密钥。
 

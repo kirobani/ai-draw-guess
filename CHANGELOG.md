@@ -1,5 +1,12 @@
 # 更新记录
 
+## v1.2.0 · 2026-11-12
+
+- 加入混元角色及 PackyCode 混元、米醋 MiniMax 选项。12 位常规选手和 9 个可选型号默认使用 OpenRouter。新装默认型号增加混元 Hy4，并更新 DeepSeek、Kimi 与 MiniMax。已保存的型号、API 地址和密钥继续生效。
+- 加入 GPT 的 Astra、Luna、Sol、Terra，Claude 的 Opus、Sonnet、Haiku、Fable，以及 Gemini Carbon 席位。新增席位默认关闭，可在大厅一键选用。不同型号可按系列匹配各自 Live2D。
+- 更新 21 套九状态高清角色，改善待机呼吸、连续头部动作和画猜切换。新旧对局回放分别使用对应版本的角色。新版角色包分为三个可续传和离线安装的 ZIP。
+- 修复未安装或加载失败的 Cubism Core 导致选手列表空白、AI 设置按钮无反应的问题。大厅、角色预览、全员预览和视频素材页共用角色加载保护。
+
 ## 未发布 · 2026-10-27
 
 - 修复 Anthropic 兼容接口的截断错误写死为「Claude」的问题，协议名称也改为「Anthropic 兼容接口」。通过此协议接入的 Kimi 不再被文案误认成 Claude。

@@ -1,4 +1,4 @@
-import {CharacterView} from './avatar-renderer.mjs';
+import {CharacterView} from './avatar-runtime.mjs';
 import {seatCharacter,seatPresentation,tablePlaces} from './seat-presentation.mjs';
 import {latestSpeech,messageBody,messageLabel} from './conversation.mjs';
 import {playerModelLabel,playerLabel} from './characters.mjs';
@@ -18,7 +18,10 @@ export function createPlayerSeats(container,{View=CharacterView,onPreparation=()
     card.className=player.human?'player-seat human-seat':'player-seat ai-seat';card.dataset.playerId=player.id;
     card.innerHTML='<header><div class="seat-identity"><strong class="seat-name"></strong><small class="seat-model"></small></div><span class="seat-score"></span></header><div class="seat-stage"></div><div class="seat-dialogue" hidden></div><div class="seat-caption"><span class="seat-role"></span><span class="seat-status"></span></div><div class="seat-feedback"></div>';
     const seat={card,characterId:character?.id,modelUrl:character?.modelUrl,view:null,feedbackKey:'',status:'loading'};seats.set(player.id,seat);home.append(card);
-    if(character){
+    if(character?.portraitUrl&&!character.ready){
+      const portrait=document.createElement('img');portrait.className='seat-portrait';portrait.src=character.portraitUrl;portrait.alt=character.name+'的立绘';
+      card.querySelector('.seat-stage').append(portrait);card.dataset.character=character.id;seat.status='ready';
+    }else if(character){
       const stage=card.querySelector('.seat-stage');
       stage.innerHTML='<canvas></canvas><span class="seat-loading" role="status">角色加载中…</span><button class="seat-retry" hidden>重新加载角色</button>';
       const canvas=stage.querySelector('canvas'),loading=stage.querySelector('.seat-loading'),retry=stage.querySelector('button');
@@ -26,7 +29,7 @@ export function createPlayerSeats(container,{View=CharacterView,onPreparation=()
       seat.load=()=>{
         seat.view?.destroy();const next=canvas.cloneNode();stage.querySelector('canvas').replaceWith(next);loading.hidden=false;loading.textContent='角色加载中…';retry.hidden=true;
         seat.status='loading';report();
-        const view=new View(next,{modelUrl:character.modelUrl,motion:character.motion,framing:'portrait',onReady:()=>{if(seat.view!==view||seats.get(player.id)!==seat)return;loading.hidden=true;seat.status='ready';report();},onError:()=>{if(seat.view!==view||seats.get(player.id)!==seat)return;loading.textContent='角色加载失败';retry.hidden=false;seat.status='error';report();}});
+        const view=new View(next,{modelUrl:character.modelUrl,motion:character.motion,framing:character.family?'seat':'portrait',onReady:()=>{if(seat.view!==view||seats.get(player.id)!==seat)return;loading.hidden=true;seat.status='ready';report();},onError:()=>{if(seat.view!==view||seats.get(player.id)!==seat)return;loading.textContent='角色加载失败';retry.hidden=false;seat.status='error';report();}});
         seat.view=view;view.setState(card.dataset.state||'idle');view.setPaused(paused);view.setSuspended?.(!active);view.load();
       };
       retry.onclick=seat.load;seat.load();

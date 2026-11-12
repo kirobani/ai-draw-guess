@@ -1,8 +1,9 @@
+import {resolveCharacter,characterSpeech} from '../public/characters.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {routerModels,codexModels} from '../lib/model-catalog.mjs';
 import {matchingModels,sameSetup,connectionIssue} from '../public/model-picker.mjs';
-import {callModel,migrateConfig,DEFAULT_PLAYERS,buildRequest} from '../lib/providers.mjs';
+import {callModel,migrateConfig,DEFAULT_PLAYERS,buildRequest,EXTRA_PLAYERS,publicPlayer} from '../lib/providers.mjs';
 import {checkKey,checkCapabilities} from '../lib/model-checks.mjs';
 const p={id:'claude',provider:'compatible',baseUrl:'https://openrouter.ai/api/v1',model:'anthropic/vision',characterId:'claude',apiKey:'private-fixture'};
 test('型号目录按输入能力、输出能力和厂商筛选，文字与原生生图不冒充游戏适用',()=>{
@@ -15,7 +16,7 @@ test('型号目录按输入能力、输出能力和厂商筛选，文字与原�
 });
 test('只合并旧默认 GPT，不删除自定义选手；以后保存的自定义配置不会再被迁移删除',()=>{
  const cfg=migrateConfig({version:2,players:[{id:'codex-sol',name:'Codex · Sol',provider:'codex',apiKey:'keep'},{id:'codex-luna',provider:'codex'},{id:'custom',provider:'codex'}]});
- assert.equal(DEFAULT_PLAYERS.filter(p=>p.provider==='codex').length,0);assert.equal(cfg.players.length,4);assert.equal(cfg.players[0].name,'GPT');assert.equal(cfg.players[0].apiKey,'keep');assert.deepEqual(migrateConfig(cfg),cfg);
+ assert.equal(DEFAULT_PLAYERS.filter(p=>p.provider==='codex').length,0);assert.equal(cfg.players.length,5+EXTRA_PLAYERS.length);assert.equal(cfg.players[0].name,'GPT');assert.equal(cfg.players[0].apiKey,'keep');assert.deepEqual(migrateConfig(cfg),cfg);
 });
 test('换型号、地址、接入方式或密钥使验收记录失效，不向网页提供密钥指纹',()=>{
  for(const changed of [{model:'anthropic/new'},{baseUrl:'https://other.test/v1'},{provider:'anthropic'},{apiKey:'new-private'}])assert.notEqual(checkKey(p),checkKey({...p,...changed}));
@@ -42,4 +43,37 @@ test('示例地址在保存和请求前拦截，完整千问平台地址可以�
  assert.equal(connectionIssue(official),'');
  assert.equal(buildRequest(official,'test',null).url,official.baseUrl+'/chat/completions');
  assert.equal(buildRequest(official,'test',null).body.model,'qwen3.8-flash');
+});
+
+test('各模型席位匹配自己的 Live2D，换型号仍按系列自动匹配',()=>{
+ const ids=['astra','luna','sol','terra','opus','sonnet','haiku-5.5','fable-5.2','gemini-ultra'];
+ for(const [i,player] of EXTRA_PLAYERS.entries()){
+  const seat=publicPlayer(player);
+  assert.equal(seat.characterId,ids[i]);
+  assert.equal(seat.characterChoice,player.characterId);
+ }
+ const gemini={id:'gemini',provider:'compatible',baseUrl:'https://openrouter.ai/api/v1',characterId:'gemini',model:'google/gemini-4-argon'};
+ const seat=publicPlayer(gemini);
+ assert.equal(seat.characterId,'gemini-pro');
+ assert.equal(characterSpeech(gemini,'看图。'),'看图喵。');
+ assert.equal(resolveCharacter({...seat,characterId:seat.characterChoice,model:'google/gemini-3.8-flash-lite'}).id,'gemini-flash-lite');
+ assert.equal(resolveCharacter({...gemini,model:'google/gemini-3.8-flash'}).id,'gemini-flash');
+ assert.equal(resolveCharacter({...gemini,characterId:'gemini-pro',model:'google/gemini-4-carbon'}).id,'gemini-pro');
+ assert.equal(resolveCharacter({...gemini,characterId:'qwen'}).id,'qwen');
+ assert.deepEqual(matchingModels({...gemini,characterId:'gemini-pro'},{models:[
+  {id:gemini.model,source:'openrouter',family:'gemini',vision:true,gameDrawing:true},
+  {id:'anthropic/vision',source:'openrouter',family:'claude',vision:true,gameDrawing:true}
+ ]}).map(m=>m.id),[gemini.model]);
+});
+
+test('Packy 混元请求使用独立 API Key、图片输入和平台思考参数',()=>{
+  const player={id:'hunyuan',provider:'packy',model:'hy4',baseUrl:'https://cf.api.fan/v1',apiKey:'fixture-only'};
+  const image='data:image/png;base64,fixture';
+  const request=buildRequest(player,'猜图',image);
+  assert.equal(request.url,'https://cf.api.fan/v1/chat/completions');
+  assert.equal(request.headers.Authorization,'Bearer fixture-only');
+  assert.equal(request.body.messages[0].content[1].image_url.url,image);
+  assert.deepEqual(request.body.thinking,{type:'disabled'});
+  assert.equal(request.body.reasoning_effort,'no_think');
+  assert.equal(buildRequest({...player,reasoningEffort:'high'},'画图',null).body.reasoning_effort,'high');
 });

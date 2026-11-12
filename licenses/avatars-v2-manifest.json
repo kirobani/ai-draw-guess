@@ -1,0 +1,1900 @@
+{
+  "files": [
+    {
+      "path": "public/models/agentkit-expressions-r3/hunyuan/portrait.png",
+      "size": 2406644,
+      "sha256": "69d820342f63fdffc1142a4bd83406ccc0f53226c453b6ceea4a9c9fddd07237",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/astra-expressions.2048/texture_00.png",
+      "size": 20834118,
+      "sha256": "203b35bb0e78a228932f70a5463a4720e8bd7602126cec385d79cdc9430cd21c",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/astra-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/astra-expressions.cdi3.json",
+      "size": 10145,
+      "sha256": "35e43e7b334927fd6aff4095ff28c59389fc0bf0cb919f03a53dae1d27e374be",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/astra-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/astra-expressions.moc3",
+      "size": 21340864,
+      "sha256": "a95991c81a4f101ccbf8a564c2d9da218de386846db7708c16833d265c171f02",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/astra-expressions.model3.json",
+      "size": 1648,
+      "sha256": "cab8a95a78a54d688e5d79e537efa0409b448f4f497639ea580218677efb4fe3",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/astra/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/deepseek-expressions.2048/texture_00.png",
+      "size": 20698887,
+      "sha256": "e2f114a760612532ed9740260443ebed356c793452055a73bf0d60e2d034fe37",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/deepseek-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/deepseek-expressions.cdi3.json",
+      "size": 9930,
+      "sha256": "19bbc3a2eb80df6479ad4d36be67d3a130a9ffc696e0182c9bd143e39a11393a",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/deepseek-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/deepseek-expressions.moc3",
+      "size": 20827072,
+      "sha256": "0b37c65f985eb1984fd4739ccd0331db091348f88599c216a208ce5158a7d28b",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/deepseek-expressions.model3.json",
+      "size": 1663,
+      "sha256": "da02119213009df96afcc94bb1bc854918e318d9ad9577999eaeea574853a92b",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/deepseek/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/doubao-expressions.2048/texture_00.png",
+      "size": 15388607,
+      "sha256": "b41a0fe0367a34c6ef6ac3c4f09d1af99c108117bdb32c538d83ac6966ad10df",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/doubao-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/doubao-expressions.cdi3.json",
+      "size": 9070,
+      "sha256": "125ef7b82063c2ad473e02ba023da1577a410f3cac8af6a3195a3242ca4f59ba",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/doubao-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/doubao-expressions.moc3",
+      "size": 16527040,
+      "sha256": "190ac0a55e0e49a0a5536a725fbef2dd159136c0ce7ee368e4edf7966ba50db5",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/doubao-expressions.model3.json",
+      "size": 1653,
+      "sha256": "f02f06172994f6abc66857a8b71ad99b5ae159f3758be3e0a7a548468b2583ce",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/doubao/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/fable-5.2-expressions.2048/texture_00.png",
+      "size": 20375800,
+      "sha256": "4a1aacd149558047b76158639a3a2999e3b9192354232ba3e189dad7e7a48b29",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/fable-5.2-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/fable-5.2-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/fable-5.2-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/fable-5.2-expressions.moc3",
+      "size": 16208576,
+      "sha256": "73de9fdca9a5ea4e48881cf253293089067f56c6f6df4a0701d28f1e5aa340f3",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/fable-5.2/fable-5.2-expressions.model3.json",
+      "size": 1668,
+      "sha256": "a7034df68a86fbe5acb8196b98cb4964350315b24d4b383de0c80182b50c127b",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/gemini-flash-lite-expressions.2048/texture_00.png",
+      "size": 24077261,
+      "sha256": "82e88f0e116a0d5d8231b3f5b3d4e29fb7316418c1449cd7a099118e875ce06e",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/gemini-flash-lite-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/gemini-flash-lite-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/gemini-flash-lite-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/gemini-flash-lite-expressions.moc3",
+      "size": 30413184,
+      "sha256": "1178301f20977e3d8300d5c332cc155045d4e7aaf5c7bd4407ca3d5f84c8df4f",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash-lite/gemini-flash-lite-expressions.model3.json",
+      "size": 1708,
+      "sha256": "82e6d265ddb3e3a53eb001b14da1bdb8f4dcce6ba75cb97471095957309a0c95",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/gemini-flash-expressions.2048/texture_00.png",
+      "size": 22942626,
+      "sha256": "e83e6fef8e2e33de8207ea6d4e715caadfa4ce212ac430bfd271714fdf53a449",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/gemini-flash-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/gemini-flash-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/gemini-flash-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/gemini-flash-expressions.moc3",
+      "size": 23076416,
+      "sha256": "a04ce3bbdb7c075775f192f220682aae290ed0a33004108a2e30b519194466f2",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-flash/gemini-flash-expressions.model3.json",
+      "size": 1683,
+      "sha256": "8c48b06e312e665c75e5df4afdf5ac167158861b726d86a6ba933549fdcec9f2",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/gemini-pro-expressions.2048/texture_00.png",
+      "size": 24659654,
+      "sha256": "1cecce603d86314c288e6e4e46d2eb1b102af5ce7012f27dfe30840f8ed2870b",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/gemini-pro-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/gemini-pro-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/gemini-pro-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/gemini-pro-expressions.moc3",
+      "size": 24341312,
+      "sha256": "846f1569ba7c48a624bfbb7fc25b0e91b34c6b49e9a0b4e2e489461c8635b373",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-pro/gemini-pro-expressions.model3.json",
+      "size": 1673,
+      "sha256": "8c0a2898eb2f3b59582084fc68a6003ac0c7a71e701e752a15eca889d1a3de21",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/gemini-ultra-expressions.2048/texture_00.png",
+      "size": 23766358,
+      "sha256": "d7db40af776917705952fda28df846388755607b9beefaeeff7f1dfff537f26a",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/gemini-ultra-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/gemini-ultra-expressions.cdi3.json",
+      "size": 9715,
+      "sha256": "c3aeba6595ca9ee47abdb8449b1bfcaa247e004906e4ae2c34946f803d6d4b40",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/gemini-ultra-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/gemini-ultra-expressions.moc3",
+      "size": 23194944,
+      "sha256": "f48d10acdb45fc7f5deb98c92876835696dbb99a2ae72cf70380c1201a4c4797",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/gemini-ultra/gemini-ultra-expressions.model3.json",
+      "size": 1683,
+      "sha256": "6698c1bf15136eff23f526f16db305b950d5a52e0ebf96fe7f31756cf127330c",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/glm-expressions.2048/texture_00.png",
+      "size": 21516948,
+      "sha256": "d7921183f0cff764170fd18ee0f33d4ecc9e5958902a2d42788d27834c7c043d",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/glm-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/glm-expressions.cdi3.json",
+      "size": 9930,
+      "sha256": "bf255c6144b09c9e519f73ddef53c403b567b8fd4328205021c5070077a20675",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/glm-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/glm-expressions.moc3",
+      "size": 20853824,
+      "sha256": "933ded26708135ebd052e80be804bed79e4f4360d05271e66b54b4d02ebcbe68",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/glm/glm-expressions.model3.json",
+      "size": 1638,
+      "sha256": "2aa9b88ca2f0a0dba8595d9cd3fb291deef7933c86bc0a4217826ef5d049f0df",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/grok-expressions.2048/texture_00.png",
+      "size": 34477272,
+      "sha256": "62a0a41f8fa585f379888fdbb48a1cf441566ec0ab5fa60c7e4bd999f02269b1",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/grok-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/grok-expressions.cdi3.json",
+      "size": 9924,
+      "sha256": "e3b9b0a8ed939523e272820e6f7b72ae9366e69c31208ddc90201b8897a43743",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/grok-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/grok-expressions.moc3",
+      "size": 16447104,
+      "sha256": "30dda180e085d96da20ca66329b18c03e84afac683be025f09e11606b72bf808",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/grok/grok-expressions.model3.json",
+      "size": 1643,
+      "sha256": "4a7f6daae7ec9c6e779e7400f8525eb0225f9d291dda4de94ba75abe563d9842",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/haiku-5.5-expressions.2048/texture_00.png",
+      "size": 21339717,
+      "sha256": "a0a4cc98a829b405389ad20025c878f537f4d2038c19921ed575f81accecb490",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/haiku-5.5-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/haiku-5.5-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/haiku-5.5-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/haiku-5.5-expressions.moc3",
+      "size": 25341376,
+      "sha256": "18d52bb16271364268c3126f9dd8755725ae0b3f542dfaa02661ba325adef817",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/haiku-5.5/haiku-5.5-expressions.model3.json",
+      "size": 1668,
+      "sha256": "d0abc160d5c010845e6ebe00297c406167fad6c291ceed89dfa6742d791bf791",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/hunyuan-expressions.2048/texture_00.png",
+      "size": 20602222,
+      "sha256": "f163bb3fc8c33cd464bdf2bad16a97199cfa0c4178e5742d9acbd13805352777",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/hunyuan-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/hunyuan-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/hunyuan-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/hunyuan-expressions.moc3",
+      "size": 18468352,
+      "sha256": "78d4dcf0d6b5b4cc82ae63227f40e0c5b54374b886072169161fd493526a8710",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/hunyuan/hunyuan-expressions.model3.json",
+      "size": 1658,
+      "sha256": "a0e844f5735d1d7de45c30a808246ace24a3f48d14514e4cd6f4560e0ef3c9e7",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/kimi-expressions.2048/texture_00.png",
+      "size": 22699514,
+      "sha256": "9f4d90725b6d4001bfe755f68d0fe182a46af92359f0e696b615f76a201de854",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/kimi-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/kimi-expressions.cdi3.json",
+      "size": 9500,
+      "sha256": "ac33e3bf9ecb2e7d2f0bcabf0b999eda25319448f3d2b68755339d6eef3f9ca1",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/kimi-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/kimi-expressions.moc3",
+      "size": 20341632,
+      "sha256": "c053b245ea2c27995677f8f15127a83403253327dacf79d38965c83bfbacf2c2",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/kimi/kimi-expressions.model3.json",
+      "size": 1643,
+      "sha256": "b09adebaf3fc8d26151a814dda9927b9435f60a15d74f3b70110384ae3dc567d",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/luna-expressions.2048/texture_00.png",
+      "size": 19620880,
+      "sha256": "ca23fe0231bd5e446eb0788249a27317a4de37832852d6027cb14a01c814995e",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/luna-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/luna-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/luna-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/luna-expressions.moc3",
+      "size": 24120128,
+      "sha256": "f539ff206bacd4adeec9eac38669ab3936eafe0bd244405f4b52117b0c7fadb5",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/luna/luna-expressions.model3.json",
+      "size": 1643,
+      "sha256": "49ef2e8f969d9b67337c8b2553dd9779304f387466233b477a11d2c214445195",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/mimo-expressions.2048/texture_00.png",
+      "size": 26347758,
+      "sha256": "c31a775341d41405599b657b80884902b14df40aada1981ad304b9587b7ac0ad",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/mimo-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/mimo-expressions.cdi3.json",
+      "size": 9356,
+      "sha256": "9604a7c8ef20290f9c3cd0dc3ac0f1e6820e25f5208f840fef57d78438ffe24e",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/mimo-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/mimo-expressions.moc3",
+      "size": 17164672,
+      "sha256": "809f986fc72b2dd25857aee0344462a0bc80249a16f48d8db1a99b0475a41783",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/mimo/mimo-expressions.model3.json",
+      "size": 1643,
+      "sha256": "089edd2f4c1fed35b6a704a1ddb43fccaf3f464c57c2e00f993100a302f80145",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/minimax-expressions.2048/texture_00.png",
+      "size": 29378477,
+      "sha256": "946a96d58bbeceeeb0364d50a232d36c09656895ff36e9a47f0d45579700255c",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/minimax-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/minimax-expressions.cdi3.json",
+      "size": 9356,
+      "sha256": "9604a7c8ef20290f9c3cd0dc3ac0f1e6820e25f5208f840fef57d78438ffe24e",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/minimax-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/minimax-expressions.moc3",
+      "size": 16449792,
+      "sha256": "814682c6d1383975f6aea556218d474b00560b3c670b09a9931ad9393cc11c99",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/minimax/minimax-expressions.model3.json",
+      "size": 1658,
+      "sha256": "0e4b5962039b2cf35195242761759289e32a61c75c1d4ec88370c0885e597b3a",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/opus-expressions.2048/texture_00.png",
+      "size": 21957267,
+      "sha256": "594bcb4998d392a626972d239298bbadbaf965cb03380952d63cc298d3135d4b",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/opus-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/opus-expressions.cdi3.json",
+      "size": 9500,
+      "sha256": "0f61af79c7f6e444ecc4acbfa90a4e14f84bba1d592d63070b2d2995a079d80e",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/opus-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/opus-expressions.moc3",
+      "size": 17276672,
+      "sha256": "084c2a24bbd607a2b800d2ad40f80a9e5337ccec09f7fe6b37cea175c58bdf87",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/opus/opus-expressions.model3.json",
+      "size": 1643,
+      "sha256": "9ee6f52e2a8c8ebce8f0a28896ac40e469f18780171bc001403fd13137b828bf",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/qwen-expressions.2048/texture_00.png",
+      "size": 21707455,
+      "sha256": "143bf88bbd2461b4f43ab4ba950db28b5e94a72b8e1f652ef64581172ff7a683",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/qwen-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/qwen-expressions.cdi3.json",
+      "size": 9930,
+      "sha256": "bf255c6144b09c9e519f73ddef53c403b567b8fd4328205021c5070077a20675",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/qwen-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/qwen-expressions.moc3",
+      "size": 18320960,
+      "sha256": "49643f82da4b45f9b9baa5eafd0876b81d95736d3ce04c431c523153ce1888c1",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/qwen/qwen-expressions.model3.json",
+      "size": 1643,
+      "sha256": "53f251f329200a67c6a075a0841e96322ab48f02c1b772f6d82e2f6b836d784d",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/sol-expressions.2048/texture_00.png",
+      "size": 17852321,
+      "sha256": "42fa5a5fd5a3e7c6f2af9f30f32f7be3b20f0249374efb9d01d70c2f318d938c",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/sol-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/sol-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/sol-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/sol-expressions.moc3",
+      "size": 17186240,
+      "sha256": "269423aca9b436c02b32aa43df7282dc75ea199a8093e91f4e0bc0c4c3613d5a",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sol/sol-expressions.model3.json",
+      "size": 1638,
+      "sha256": "8e92a3a4670fadf8b64c778be7997f50284052c54388031ff7da0935128883ab",
+      "archive": "avatars-v2-1.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/sonnet-expressions.2048/texture_00.png",
+      "size": 18092252,
+      "sha256": "d894b132c16acd763172bb81cbe5cf13facdb85a7375210982e099f99af8a277",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/sonnet-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/sonnet-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/sonnet-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/sonnet-expressions.moc3",
+      "size": 14942016,
+      "sha256": "ccb1e85a57c28a360c7ed4969fdeaf81454528847d58eb3cc3ad33676cc96763",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/sonnet/sonnet-expressions.model3.json",
+      "size": 1653,
+      "sha256": "34b0654b044ddb91a5757acffc636d2c065dce8375d9fe1d288b8f00db0691b4",
+      "archive": "avatars-v2-2.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/expressions/celebrate.exp3.json",
+      "size": 479,
+      "sha256": "292c94e42ebb755ff3927c9ceac6cdc524858e9276a1d74df843b3f06a0fc7dd",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/expressions/confident.exp3.json",
+      "size": 479,
+      "sha256": "51f1c359cec790f92c9613bbcab894909d57fa31359b4d733103f5e528f556b4",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/expressions/drawing.exp3.json",
+      "size": 482,
+      "sha256": "a74b9737b643c7d83cdfc2bdac29e2d0d1e28540d32efa707a7c443f6cee98c7",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/expressions/finished.exp3.json",
+      "size": 479,
+      "sha256": "7fc1b2e36fab7efeb28a7366ebc5b34dd848a4fff283de4c82bf38a51d12ea75",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/expressions/hesitant.exp3.json",
+      "size": 479,
+      "sha256": "101a24e5b156fbc60fe4608f22aa576c85e8f11f194d0f31db129ff9449aafeb",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/expressions/idle.exp3.json",
+      "size": 479,
+      "sha256": "84e6eba51b0443cdfdfc1d34ebe2b0e46bdc1e379ae65b0dd7e41f11253a79a8",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/expressions/spectator.exp3.json",
+      "size": 479,
+      "sha256": "1a8273f858cb1225340ecf3459c2f32e2e80e76314523b0695185f889471a757",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/expressions/wild-guess.exp3.json",
+      "size": 479,
+      "sha256": "6763b508110e0eee4e9cb10f40688c10c498a7717d2678f278719712ae1ae89d",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/expressions/wrong.exp3.json",
+      "size": 479,
+      "sha256": "1ab845abd2362c0c57bf8b191c5df38d83ef5fbe5535cd07522a3a718a151439",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/terra-expressions.2048/texture_00.png",
+      "size": 14451985,
+      "sha256": "7067c75188c6d554abd87956596caa55379154f01eacc2d1921ba81f25f010cb",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/terra-expressions.blink.motion3.json",
+      "size": 1155,
+      "sha256": "399f91b7bfac0666f589ab7c6daace5e33e5c6d6e7c6e7ca4024b6db48a65110",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/terra-expressions.cdi3.json",
+      "size": 8746,
+      "sha256": "864ad5bc54116b62f19ba37b724d471f4d1365f17e2db550065816e4b516d41a",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/terra-expressions.idle.motion3.json",
+      "size": 1493,
+      "sha256": "86a613c2b56cffcf5af755fcd291f33b2904ddbd056e36fbb2f01df7aba5b885",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/terra-expressions.moc3",
+      "size": 10107264,
+      "sha256": "0d4c08b2bf351ff70c84e30cc5ec4dc8c5c893652b060c1f35db85b1227ed6fc",
+      "archive": "avatars-v2-3.zip"
+    },
+    {
+      "path": "public/models/live2d-all-characters-r1/terra/terra-expressions.model3.json",
+      "size": 1648,
+      "sha256": "d5615cd77490e7877bd5f2928b623c943ea0fa85d7c5f31ef3d77d7d3e590442",
+      "archive": "avatars-v2-3.zip"
+    }
+  ]
+}

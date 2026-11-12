@@ -4,10 +4,12 @@ import {hintControl,visualHint,HINT_MODES,hintModeInfo} from './visual-hints.mjs
 import {updateArenaLayout} from './seat-presentation.mjs';
 import {W,H,paint,png,drawShape,DrawingHistory} from './drawing.mjs';
 import {createCompanion} from './avatar-game.mjs';
+import {avatarRuntimeAvailable} from './avatar-runtime.mjs';
 import {createPlayerSeats} from './player-seats.mjs';
 import {createConversation,recapMarkup} from './conversation.mjs';
 import {drawingTransition,playbackFactor,strokeDuration,animateProgress,partialStroke} from './drawing-playback.mjs';
-import {CHARACTERS,CHARACTER_MAP,playerLabel,playerModelLabel} from './characters.mjs';
+import {CHARACTERS,characterFamily,resolveCharacter,playerLabel,playerModelLabel} from './characters.mjs';
+import {MODEL_FAMILY_NAMES} from './model-family-avatars.mjs';
 import {mountModelPicker,sameSetup,connectionIssue} from './model-picker.mjs';
 import {relayActionMarkup,relayStageMarkup,renderRelayResults} from './relay-view.mjs';
 import {createRelayShowcase} from './relay-view.mjs';
@@ -53,7 +55,9 @@ function confirmAction(title,text,yes='确定'){return new Promise(resolve=>{$('
 
 async function loadConfig(init=false){config=await api('/api/config');productionLink.hidden=config.recordingVersion!==2;if(config.recordingVersion===2&&!productionTrace){const {createRecordingClient}=await import('./recording-client.mjs');productionTrace=createRecordingClient({getGame:()=>game,send:api,onError:toast});}if(init)selected=new Set(config.players.filter(p=>p.enabled).map(p=>p.id));else selected=new Set([...selected].filter(id=>config.players.some(p=>p.id===id)));renderLobby();}
 function renderLobby(){
-  $('players').innerHTML=`<button class="chip human ${human?'selected':''}" data-human="1" aria-pressed="${human}">✦ 你 <small>人类</small></button>`+config.players.map(p=>`<button class="chip ${selected.has(p.id)?'selected':''} ${(p.provider!=='codex'&&!p.hasKey&&p.provider!=='compatible')?'unavailable':''}" data-player="${esc(p.id)}" aria-pressed="${selected.has(p.id)}" title="${esc(playerLabel(p))}" style="--p-color:${esc(p.color)}"><span class="chip-dot"></span>${esc(p.name)}<small class="chip-model">${esc(playerModelLabel(p))}</small><small>${p.provider==='codex'?'命令行':p.hasKey?'API':'待配置'}</small></button>`).join('');
+  const playerChip=p=>`<button class="chip ${selected.has(p.id)?'selected':''} ${(p.provider!=='codex'&&!p.hasKey&&p.provider!=='compatible')?'unavailable':''}" data-player="${esc(p.id)}" aria-pressed="${selected.has(p.id)}" title="${esc(playerLabel(p))}" style="--p-color:${esc(p.color)}"><span class="chip-dot"></span>${esc(p.name)}<small class="chip-model">${esc(playerModelLabel(p))}</small><small>${p.provider==='codex'?'命令行':p.hasKey?'API':'待配置'}</small></button>`;
+  const regular=config.players.filter(p=>!p.optional),extra=config.players.filter(p=>p.optional);
+  $('players').innerHTML=`<button class="chip human ${human?'selected':''}" data-human="1" aria-pressed="${human}">✦ 你 <small>人类</small></button>`+regular.map(playerChip).join('')+(extra.length?`<div class="roster-options"><span>更多型号 · 默认不选</span><button class="quiet" data-roster="extra">只选这 ${extra.length} 位</button><button class="quiet" data-roster="regular">恢复常规阵容</button></div>`+extra.map(playerChip).join(''):'');
   const levels=config.categoryLevels?.[category]||(category==='成语'?config.idiomLevels:[]),level=levels.find(item=>item.id===idiomLevel)||levels[0];
   $('categories').innerHTML=config.categories.map(c=>{const count=(config.categoryLevels?.[c.name]||(c.name==='成语'?config.idiomLevels:[])).find(l=>l.id===idiomLevel)?.count??c.count;return `<button class="chip ${category===c.name?'selected':''}" data-category="${esc(c.name)}" aria-pressed="${category===c.name}">${esc(c.name)} <small>${count.toLocaleString('zh-CN')}</small></button>`;}).join('');
   $('idiomLevelRow').hidden=!levels.length;
@@ -70,14 +74,14 @@ function renderLobby(){
   document.querySelector('.intro h1').innerHTML=relay?'传一幅<span class="pink">画</span>，<br>歪出一个新<span class="pink">故事</span>。':lobbyIntro.heading;
   document.querySelector('.intro-text').innerHTML=relay?'你画我猜，猜完再画。每个人只看上一棒，<br>等所有链条走完，再一起拆开看。':lobbyIntro.text;
   document.querySelector('.rule-note').innerHTML=relay?'<span class="note-tape"></span><strong>传画接龙小抄</strong><p><b>同时行动</b> · 全员画图 / 全员猜词交替</p><p><b>统一传递</b> · 全部交卷才进入下一棒</p><p><b>随机均衡</b> · 每条链都经过每人一次</p><p><b>最后揭晓</b> · 逐棒播放，全员投票</p>':lobbyIntro.note;
-  $('assetSetupNotice').hidden=!!(config.avatarAssets?.core&&config.avatarAssets?.models);
+  $('assetSetupNotice').hidden=!!(avatarRuntimeAvailable&&config.avatarAssets?.models);
   $('connectionInfo').textContent=config.players.some(p=>p.hasKey)?'模型接口已配置，可在 AI 设置选择型号并验证。':'先在「AI 设置」填写统一 OpenRouter Key，再开始比赛。';
   document.querySelectorAll('[data-mode]').forEach(e=>{e.classList.toggle('selected',e.dataset.mode===mode);e.setAttribute('aria-pressed',e.dataset.mode===mode);});
   document.querySelectorAll('[data-rounds]').forEach(e=>{e.classList.toggle('selected',+e.dataset.rounds===rounds);e.setAttribute('aria-pressed',+e.dataset.rounds===rounds);});
   playerSeats.prepare(config.players.filter(p=>selected.has(p.id)));
   if(mode==='battle'&&config.randomTurnOrder)$('matchInfo').textContent+=' · 每局随机出场';
 }
-$('players').onclick=e=>{const h=e.target.closest('[data-human]'),p=e.target.closest('[data-player]');if(h){if(mode==='duel')return toast('单人模式需要你参加。');human=!human;}if(p){const id=p.dataset.player;if(mode==='duel')selected=new Set([id]);else selected.has(id)?selected.delete(id):selected.add(id);}renderLobby();};
+$('players').onclick=e=>{const roster=e.target.closest('[data-roster]');if(roster){const players=config.players.filter(p=>roster.dataset.roster==='extra'?p.optional:!p.optional&&p.enabled);selected=new Set((mode==='duel'?players.slice(0,1):players).map(p=>p.id));renderLobby();return;}const h=e.target.closest('[data-human]'),p=e.target.closest('[data-player]');if(h){if(mode==='duel')return toast('单人模式需要你参加。');human=!human;}if(p){const id=p.dataset.player;if(mode==='duel')selected=new Set([id]);else selected.has(id)?selected.delete(id):selected.add(id);}renderLobby();};
 $('categories').onclick=e=>{const b=e.target.closest('[data-category]');if(b){category=b.dataset.category;renderLobby();}};
 $('idiomLevels').onclick=e=>{const b=e.target.closest('[data-idiom-level]');if(b){idiomLevel=b.dataset.idiomLevel;renderLobby();$('idiomLevels').querySelector(`[data-idiom-level="${idiomLevel}"]`).focus();}};
 $('hintModes').onclick=e=>{const b=e.target.closest('[data-hint-mode]');if(!b)return;hintMode=b.dataset.hintMode;try{localStorage.setItem('drawguess.hintMode',hintMode);}catch{}renderLobby();$('hintModes').querySelector('[data-hint-mode="'+hintMode+'"]').focus();};
@@ -87,6 +91,7 @@ $('startButton').onclick=async()=>{
   if(mode==='relay'&&!config.relayShowcase)return toast('接龙展示与投票尚未在服务端生效，请先关闭并重新启动游戏，再刷新页面。');
   if(mode!=='relay'&&!config.hintModes?.some(item=>item.id===hintMode))return toast('提示方式尚未在服务端生效，请先关闭并重新启动游戏，再刷新页面。');
   const count=selected.size+(human?1:0);if(count<2||!selected.size)return toast('请至少选择一位 AI，并确保共有两位选手。');
+  if(count>13)return toast('每局最多 13 位选手。请取消部分选手，或使用「更多型号」旁的按钮切换阵容。');
   const missing=config.players.filter(p=>selected.has(p.id)&&p.provider!=='codex'&&p.provider!=='compatible'&&!p.hasKey);
   if(missing.length){toast(`${missing.map(p=>p.name).join('、')} 尚未填写 API Key。`);openSettings();return;}
   $('startButton').disabled=true;
@@ -263,15 +268,16 @@ function renderResults(){
   $('homeButton').onclick=()=>act('home');
 }
 function settingsRow(p){
-  const character=CHARACTER_MAP[p.characterId];
+  const choice=p.characterChoice||p.characterId||'none';
+  const character=resolveCharacter({...p,characterId:choice});
   return `<article class="provider-form" data-id="${esc(p.id)}"><div class="provider-title"><strong>${esc(p.name)}</strong><button class="remove-provider" data-remove="${esc(p.id)}">移除</button></div><div class="provider-grid">
   <details class="wide player-meta"><summary>名称、接入方式与角色形象</summary><div class="provider-grid"><label>选手名称<input data-field="name" value="${esc(p.name)}" maxlength="40"></label><label>接入方式<select data-field="provider">${Object.entries(config.presets).map(([k,v])=>`<option value="${k}" ${p.provider===k?'selected':''}>${esc(v.label)}</option>`).join('')}</select></label>
-  <label class="wide">角色形象与性格<select data-field="characterId"><option value="none" ${!character?'selected':''}>自动形象 · 模型默认性格</option>${CHARACTERS.map(c=>`<option value="${c.id}" ${p.characterId===c.id?'selected':''}>${c.name} · ${c.title}</option>`).join('')}</select></label><p class="wide character-description">${esc(character?.personality||'自动匹配角色形象，回答保持模型默认风格。')}</p></div></details>
-  <div class="wide model-picker"><input type="hidden" data-field="keySource" value=""><input type="hidden" data-field="reasoningEffort" value="${esc(chosenEffort(p))}"><input type="hidden" data-field="timeoutSeconds" value="${waitSeconds(p)}"><input type="hidden" data-field="replyMode" value="${p.replyMode==='thinking'?'thinking':'fast'}"><input data-field="model" value="${esc(p.model)}"></div><details class="wide connection-details"><summary>接入与密钥设置${p.provider==='codex'?' · 本机登录':p.hasKey?' · 已保存密钥':''}</summary><label class="api-field" ${p.provider==='codex'?'hidden':''}>接口基础地址<input data-field="baseUrl" value="${esc(p.baseUrl)}" placeholder="${p.provider==='qwen'?'复制申请 Key 的平台提供的完整地址':'https://…/v1'}"></label><p class="provider-hint">${esc(config.presets[p.provider]?.hint||'')}</p><label class="api-field" ${p.provider==='codex'?'hidden':''}>API Key<input type="password" data-field="apiKey" autocomplete="off" placeholder="${p.hasKey?'已有密钥，留空保留':'填入 API Key，仅保存在本机'}"></label></details></div><div class="provider-bottom"><label class="check"><input type="checkbox" data-field="enabled" ${p.enabled?'checked':''}> 默认加入比赛</label><button data-test="${esc(p.id)}">保存并验证看图 / 绘图</button><span class="test-status" role="status"></span></div></article>`;
+  <label class="wide">角色形象与性格<select data-field="characterId"><option value="none" ${choice==='none'?'selected':''}>自动形象 · 模型默认性格</option>${CHARACTERS.map(c=>`<option value="${c.id}" ${choice===c.id?'selected':''}>${MODEL_FAMILY_NAMES[c.id]?`按 ${MODEL_FAMILY_NAMES[c.id]} 型号匹配`:`${c.name} · ${c.title}`}</option>`).join('')}</select></label><p class="wide character-description">${esc(character?.personality||'自动匹配角色形象，回答保持模型默认风格。')}</p></div></details>
+  <div class="wide model-picker"><input type="hidden" data-field="keySource" value=""><input type="hidden" data-field="reasoningEffort" value="${esc(chosenEffort(p))}"><input type="hidden" data-field="timeoutSeconds" value="${waitSeconds(p)}"><input type="hidden" data-field="replyMode" value="${p.replyMode==='thinking'?'thinking':'fast'}"><input data-field="model" value="${esc(p.model)}"></div><details class="wide connection-details" ${p.id==='hunyuan'&&!p.hasKey?'open':''}><summary>接入与密钥设置${p.provider==='codex'?' · 本机登录':p.hasKey?' · 已保存密钥':''}</summary><label class="api-field" ${p.provider==='codex'?'hidden':''}>接口基础地址<input data-field="baseUrl" value="${esc(p.baseUrl)}" placeholder="${p.provider==='qwen'?'复制申请 Key 的平台提供的完整地址':'https://…/v1'}"></label><p class="provider-hint">${esc(config.presets[p.provider]?.hint||'')}</p><label class="api-field" ${p.provider==='codex'?'hidden':''}>API Key<input type="password" data-field="apiKey" autocomplete="off" placeholder="${p.hasKey?'已有密钥，留空保留':'填入 API Key，仅保存在本机'}"></label></details></div><div class="provider-bottom"><label class="check"><input type="checkbox" data-field="enabled" ${p.enabled?'checked':''}> 默认加入比赛</label><button data-test="${esc(p.id)}">保存并验证看图 / 绘图</button><span class="test-status" role="status"></span></div></article>`;
 }
 function rowPlayer(row){const value=f=>row.querySelector(`[data-field=${f}]`).value;return {id:row.dataset.id,name:value('name'),provider:value('provider'),characterId:value('characterId'),model:value('model'),baseUrl:value('baseUrl'),apiKey:value('apiKey'),keySource:value('keySource'),replyMode:value('replyMode'),reasoningEffort:value('reasoningEffort'),timeoutSeconds:Number(value('timeoutSeconds'))};}
 function refreshModelPicker(row){const p=rowPlayer(row),saved=config.players.find(x=>x.id===p.id);mountModelPicker(row,p,modelCatalog,sameSetup(p,saved)?config.checks?.[p.id]:null);}
-async function openSettings(){try{await loadConfig();$('settingsPlayers').innerHTML=config.players.map(settingsRow).join('');$('settingsPlayers').querySelectorAll('.provider-form').forEach(refreshModelPicker);$('settingsStatus').textContent='';$('sharedKeyStatus').textContent=config.openrouter?.hasKey?'已配置统一密钥（不会显示密钥内容）':'尚未配置统一密钥';$('settingsDialog').showModal();$('modelCatalogStatus').textContent='正在读取各家的型号目录…';modelCatalog=await api('/api/models');$('modelCatalogStatus').textContent=modelCatalog.warnings.length?modelCatalog.warnings.join(' '):'目录已更新 · 默认只列出支持识图和文字回复的型号；是否能按游戏规则绘图，需要实测。';$('settingsPlayers').querySelectorAll('.provider-form').forEach(refreshModelPicker);}catch(e){toast(e.message);$('modelCatalogStatus').textContent='目录暂时不可用，可保留当前型号或手动填写。';}}
+async function openSettings(focusId){try{await loadConfig();$('settingsPlayers').innerHTML=config.players.map(settingsRow).join('');$('settingsPlayers').querySelectorAll('.provider-form').forEach(refreshModelPicker);$('settingsStatus').textContent='';$('sharedKeyStatus').textContent=config.openrouter?.hasKey?'已配置统一密钥（不会显示密钥内容）':'尚未配置统一密钥';$('settingsDialog').showModal();if(focusId==='hunyuan')$('settingsPlayers').querySelector('[data-id=hunyuan] [data-field=apiKey]')?.focus();$('modelCatalogStatus').textContent='正在读取各家的型号目录…';modelCatalog=await api('/api/models');$('modelCatalogStatus').textContent=modelCatalog.warnings.length?modelCatalog.warnings.join(' '):'目录已更新 · 默认只列出支持识图和文字回复的型号；是否能按游戏规则绘图，需要实测。';$('settingsPlayers').querySelectorAll('.provider-form').forEach(refreshModelPicker);}catch(e){toast(e.message);$('modelCatalogStatus').textContent='目录暂时不可用，可保留当前型号或手动填写。';}}
 $('saveSharedKey').onclick=async()=>{try{
   const result=await api('/api/openrouter-key',{apiKey:$('sharedOpenRouterKey').value});
   $('sharedOpenRouterKey').value='';config.players=result.players;config.openrouter={hasKey:result.hasKey};
@@ -282,22 +288,22 @@ $('settingsButton').onclick=openSettings;$('closeSettings').onclick=()=>$('setti
 $('settingsPlayers').onchange=e=>{
   const row=e.target.closest('.provider-form');if(!row)return;
   if(e.target.hasAttribute('data-route-choice')){
-    const source=e.target.value,family=row.querySelector('[data-field=characterId]').value;
-    const choices=(modelCatalog?.models||[]).filter(m=>m.source===source&&(family==='none'||m.family===family)&&m.vision&&m.gameDrawing);
+    const source=e.target.value,family=characterFamily(row.querySelector('[data-field=characterId]').value);
+    const choices=(modelCatalog?.models||[]).filter(m=>m.source===source&&(!family||m.family===family)&&m.vision&&m.gameDrawing);
     const oldModel=row.querySelector('[data-field=model]').value;
     const similar=choices.find(m=>m.id.split('/').pop().toLowerCase()===oldModel.split('/').pop().toLowerCase())||choices[0];
     if(!similar){toast('此平台暂没有适合这位选手的型号。');refreshModelPicker(row);return;}
-    row.querySelector('[data-field=provider]').value=source==='codex'?'codex':'compatible';
-    row.querySelector('[data-field=baseUrl]').value=source==='qwen'?'https://maas.qianwenaiapi.com/compatible-mode/v1':source==='openrouter'?'https://openrouter.ai/api/v1':'';
+    row.querySelector('[data-field=provider]').value=['codex','packy','openrouter'].includes(source)?source:'compatible';
+    row.querySelector('[data-field=baseUrl]').value=source==='qwen'?'https://maas.qianwenaiapi.com/compatible-mode/v1':source==='openrouter'?'https://openrouter.ai/api/v1':source==='micu'?'https://www.micuapi.ai/v1':source==='packy'?config.presets.packy.baseUrl:'';
     row.querySelector('[data-field=model]').value=similar.id;
     row.querySelector('[data-field=reasoningEffort]').value='auto';
-    row.querySelector('[data-field=keySource]').value=source==='codex'?'':source;
+    row.querySelector('[data-field=keySource]').value=['codex','packy','openrouter'].includes(source)?'':source;
     row.querySelector('[data-field=apiKey]').value='';
     row.querySelectorAll('.api-field').forEach(n=>n.hidden=source==='codex');
   }
   if(e.target.hasAttribute('data-model-choice')){row.querySelector('[data-field=model]').value=e.target.value;row.querySelector('[data-field=reasoningEffort]').value='auto';}
   if(e.target.hasAttribute('data-show-text'))row.dataset.showText=String(e.target.checked);
-  if(e.target.dataset.field==='characterId')row.querySelector('.character-description').textContent=CHARACTER_MAP[e.target.value]?.personality||'自动匹配角色形象，回答保持模型默认风格。';
+  if(e.target.dataset.field==='characterId')row.querySelector('.character-description').textContent=resolveCharacter(rowPlayer(row))?.personality||'自动匹配角色形象，回答保持模型默认风格。';
   if(['provider','baseUrl'].includes(e.target.dataset.field))row.querySelector('[data-field=keySource]').value='';
   if(['provider','model','baseUrl'].includes(e.target.dataset.field))row.querySelector('[data-field=reasoningEffort]').value='auto';
   if(e.target.dataset.field==='provider'){const type=e.target.value,pre=config.presets[type];row.querySelector('[data-field=model]').value=pre.model;row.querySelector('[data-field=baseUrl]').value=pre.baseUrl;row.querySelectorAll('.api-field').forEach(n=>n.hidden=type==='codex');row.querySelector('.provider-hint').textContent=pre.hint||'';}
@@ -309,6 +315,6 @@ $('saveSettings').onclick=async()=>{try{await saveSettings();toast('AI 设置已
 $('settingsPlayers').onclick=async e=>{const remove=e.target.closest('[data-remove]'),test=e.target.closest('[data-test]');if(remove){remove.closest('.provider-form').remove();return;}if(test){const row=test.closest('.provider-form'),status=row.querySelector('.test-status');test.disabled=true;try{await saveSettings();status.textContent='正在看图猜词，再画一辆自行车…';const tested=rowPlayer(row);const result=await api('/api/test',{id:test.dataset.test});if(sameSetup(rowPlayer(row),tested)){config.checks[test.dataset.test]=result;refreshModelPicker(row);status.textContent=result.ok?`✓ 两项实测通过 · ${(result.elapsed/1000).toFixed(1)} 秒`:'本次未全部通过，请展开实测结果查看。';}else status.textContent='测试期间型号已更改，请保存后重新测试。';}catch(e){status.textContent=e.message;}finally{test.disabled=false;}}};
 $('addPlayer').onclick=()=>{$('settingsPlayers').insertAdjacentHTML('beforeend',settingsRow({id:'ai-'+crypto.randomUUID().slice(0,8),name:'新 AI',provider:'openrouter',model:config.presets.openrouter.model,baseUrl:config.presets.openrouter.baseUrl,enabled:false,color:'#3155d9'}));refreshModelPicker($('settingsPlayers').lastElementChild);$('settingsPlayers').lastElementChild.scrollIntoView({behavior:'smooth',block:'nearest'});};
 $('closeRelayPicture').onclick=()=>$('relayPictureDialog').close();
-try{await loadConfig(true);await poll();}catch(e){toast(e.message);$('connectionInfo').textContent=e.message;}
+try{await loadConfig(true);await poll();if(new URLSearchParams(location.search).get('settings')==='hunyuan')void openSettings('hunyuan');}catch(e){toast(e.message);$('connectionInfo').textContent=e.message;}
 setInterval(poll,950);
 

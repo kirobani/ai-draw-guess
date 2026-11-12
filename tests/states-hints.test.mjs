@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Game} from '../lib/game.mjs';
-import {buildRequest,migrateConfig,publicPlayer} from '../lib/providers.mjs';
+import {buildRequest,migrateConfig,publicPlayer,EXTRA_PLAYERS} from '../lib/providers.mjs';
 import {characterState,focusedPlayer} from '../public/avatar-state.mjs';
 import {visualHint} from '../public/visual-hints.mjs';
 const players=[{id:'a',name:'A',characterId:'gemini'},{id:'b',name:'B',characterId:'claude'}];
@@ -46,6 +46,6 @@ test('五个新增官方接入格式包含图片，不把密钥放进消息；�
 });
 test('配置迁移保留已有密钥和自定义角色；删除的旧选手不会被复活',()=>{
  const old={version:1,players:[{id:'custom',name:'我的模型',provider:'compatible',apiKey:'keep-me',characterId:'grok'}]};const migrated=migrateConfig(old);
- assert.equal(migrated.players[0].apiKey,'keep-me');assert.equal(migrated.players[0].characterId,'grok');assert.equal(migrated.players.length,8);assert(!migrated.players.some(p=>p.id==='codex-sol'));
+ assert.equal(migrated.players[0].apiKey,'keep-me');assert.equal(migrated.players[0].characterId,'grok');assert.equal(migrated.players.length,9+EXTRA_PLAYERS.length);assert(!migrated.players.some(p=>p.id==='codex-sol'));
  const removed={...migrated,players:migrated.players.filter(p=>p.id!=='grok')};assert.deepEqual(migrateConfig(removed),removed);
 });

@@ -13,7 +13,7 @@ export const downloadFailureMessage=release=>
   `角色下载未完成。已下载的部分会保留，重新运行即可继续。\n`+
   `也可以用浏览器下载：${release.url}\n`+
   `下载后无需解压，在游戏文件夹运行：\n`+
-  `npm run setup:avatars -- --archive "你的下载目录/avatars-v1.zip"\n`+
+  `npm run setup:avatars -- --archive "你的下载目录/${release.name||'avatars-v1.zip'}"\n`+
   `浏览器能下载、命令行不能下载时，请使用上面的离线安装方式；终端不一定沿用浏览器的代理设置。`;
 
 export async function downloadAvatarArchive(release,{cacheDir,log=console.log,fetchImpl=fetch,attempts=3,retryDelay=attempt=>new Promise(r=>setTimeout(r,attempt*1000))}={}){
@@ -28,7 +28,7 @@ export async function downloadAvatarArchive(release,{cacheDir,log=console.log,fe
     try{
       let received=await size(partial);
       if(received===release.bytes)break;
-      log(`${received?'继续下载':'开始下载'} 11 位高清角色：${(received/1048576).toFixed(1)} / ${(release.bytes/1048576).toFixed(1)} MiB`);
+      log(`${received?'继续下载':'开始下载'} ${release.name||'高清角色包'}：${(received/1048576).toFixed(1)} / ${(release.bytes/1048576).toFixed(1)} MiB`);
       response=await fetchImpl(release.url,{headers:received?{Range:`bytes=${received}-`}:{},signal:AbortSignal.timeout(15*60*1000)});
       if(!response.ok)throw new Error(`HTTP ${response.status}`);
       if(!response.body)throw new Error('下载服务器没有返回文件内容。');

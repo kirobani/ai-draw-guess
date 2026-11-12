@@ -2,6 +2,9 @@ import {ExpressionAgentKitDriver} from './expression-agentkit-driver.mjs';
 import {expressionRegion} from './expression-regions.mjs';
 import {OriginalAgentKitDriver,CORE_MEMORY_BYTES} from './original-agentkit-driver.mjs';
 import {sourceRegion} from './original-regions.mjs';
+import {MODEL_FAMILY_AVATAR_MAP} from '../public/model-family-avatars.mjs';
+import {castNineModelId,castNineModelUrl,CAST_NINE_REVISION} from '../public/cast-nine-avatars.mjs';
+import {CastNineDriver} from './cast-nine-driver.mjs';
 import {CubismFramework} from '../vendor/cubism-framework/src/live2dcubismframework';
 import {CubismMoc} from '../vendor/cubism-framework/src/model/cubismmoc';
 import {CubismRenderer_WebGL} from '../vendor/cubism-framework/src/rendering/cubismrenderer_webgl';
@@ -27,12 +30,12 @@ export class CharacterView {
   // A system UI-transition preference must not silently freeze this animation.
   reduce=false;
   onReady:Function; onError:Function; metadata:any; modelUrl:string; motion:any; rig:any={};
-  originalKit=false; expressionKit=false; driver:any; expressionState='idle'; pendingExpression:string|null=null; expressionSwitchAt=0;
+  originalKit=false; expressionKit=false; castNineId:string|null=null; familyAvatar:any; driver:any; expressionState='idle'; pendingExpression:string|null=null; expressionSwitchAt=0;
 
   constructor(canvas:HTMLCanvasElement,options:any={}){
     canvas.dataset.viewInstance=String(++viewSequence);
     this.canvas=canvas;this.onReady=options.onReady||(()=>{});this.onError=options.onError||(()=>{});this.framing=options.framing||'full';
-    this.modelUrl=options.modelUrl||'/models/agentkit-expressions-r3/deepseek/deepseek-expressions.model3.json';this.motion=options.motion||{sway:1,joy:1};
+    this.modelUrl=options.modelUrl||castNineModelUrl('deepseek');this.motion=options.motion||{sway:1,joy:1};
     this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(canvas);
     canvas.addEventListener('pointermove',this.follow);
     canvas.addEventListener('pointerleave',this.leave);
@@ -47,7 +50,7 @@ export class CharacterView {
   }
   async loadNow(){
     try{
-      if(!(globalThis as any).Live2DCubismCore)throw new Error('尚未安装 Cubism Core，请按 README 的 Live2D 步骤安装。');
+      if(!(globalThis as any).Live2DCubismCore)throw new Error('角色运行库没有加载，请刷新重试。');
       if(!frameworkReady){CubismFramework.startUp();CubismFramework.initialize(CORE_MEMORY_BYTES);frameworkReady=true;}
       const response=await fetch(this.modelUrl);if(!response.ok)throw new Error('找不到角色模型。');
       const settings=await response.json(),base=new URL(this.modelUrl,location.href);if(this.disposed)return this;
@@ -63,10 +66,13 @@ export class CharacterView {
         this.parameters.set(this.model.getParameterId(i).getString(),i);
         this.defaults.push(this.model.getParameterDefaultValue(i));
       }
-      this.expressionKit=this.modelUrl.startsWith('/models/agentkit-expressions-r3/');
+      const id=this.modelUrl.split('/').at(-2),familyAvatar=MODEL_FAMILY_AVATAR_MAP[id];
+      this.castNineId=castNineModelId(this.modelUrl);
+      if(this.castNineId||familyAvatar?.modelUrl===this.modelUrl)this.familyAvatar=familyAvatar;
+      this.expressionKit=!!this.castNineId||!!this.familyAvatar||this.modelUrl.startsWith('/models/agentkit-expressions-r3/');
       this.originalKit=this.expressionKit||this.modelUrl.startsWith('/models/agentkit-original-hd/');
       if(!['ParamAngleX','ParamAngleY','ParamBreath'].every(id=>this.parameters.has(id))||!(['ParamPaintedEyes','ParamPaintedHead'].some(id=>this.parameters.has(id))))throw new Error('模型动作参数不完整。');
-      if(this.originalKit)this.driver=new (this.expressionKit?ExpressionAgentKitDriver:OriginalAgentKitDriver)(this.modelUrl.split('/').at(-2));
+      if(this.originalKit)this.driver=new (this.castNineId?CastNineDriver:this.expressionKit?ExpressionAgentKitDriver:OriginalAgentKitDriver)(id);
       this.model.update();
       let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
       for(let i=0;i<this.model.getDrawableCount();i++){
@@ -100,7 +106,7 @@ export class CharacterView {
       if(this.disposed)return this;
       if(!shader._isShaderLoaded)throw new Error('角色着色器加载失败。');
       this.metadata={drawables:this.model.getDrawableCount(),parameters:this.model.getParameterCount(),mocVersion:this.moc.getMocVersion()};
-      this.canvas.dataset.modelUrl=this.modelUrl;this.canvas.dataset.rig=this.expressionKit?'agentkit-expressions-r3':this.originalKit?'agentkit-original-hd':'legacy';
+      this.canvas.dataset.modelUrl=this.modelUrl;this.canvas.dataset.rig=this.castNineId?CAST_NINE_REVISION:this.familyAvatar?.rigRevision||(this.expressionKit?'agentkit-expressions-r3':this.originalKit?'agentkit-original-hd':'legacy');
       this.ready=true;this.canvas.dataset.loaded='true';this.canvas.dataset.parameters=String(this.metadata.parameters);
       this.resize();this.render(0);this.onReady(this.metadata);if(!this.suspended)this.frame=requestAnimationFrame(this.tick);
       return this;
@@ -193,7 +199,7 @@ export class CharacterView {
   }
   renderOriginalKit(dt:number){
     this.time+=dt;this.stateTime+=dt;
-    if(this.time>this.nextBlink&&!this.reduce)this.blink();
+    if(this.time>this.nextBlink&&!this.reduce&&!this.castNineId)this.blink();
     if(this.pendingExpression&&this.time>=this.expressionSwitchAt){this.expressionState=this.pendingExpression;this.pendingExpression=null;}
     const p=this.driver.frame({state:this.expressionKit?this.expressionState:this.state,time:this.time,since:this.stateTime,blinkAt:this.blinkAt,x:this.pointer.x,y:this.pointer.y,headX:this.pose.x,headY:this.pose.y,eyesClosed:this.eyesClosed,reduce:this.reduce},dt);
     this.defaults.forEach((v,i)=>this.model.setParameterValueByIndex(i,v));
@@ -213,7 +219,7 @@ export class CharacterView {
     let [x0,y0,x1,y1]=this.bounds;
     if(this.originalKit){
       const info=this.model.getModel().canvasinfo,ppu=info.PixelsPerUnit;
-      const r=(this.expressionKit?expressionRegion:sourceRegion)(this.modelUrl.split('/').at(-2),this.framing);
+      const r=this.familyAvatar?(this.familyAvatar.views[this.framing]||this.familyAvatar.views.portrait):(this.expressionKit?expressionRegion:sourceRegion)(this.modelUrl.split('/').at(-2),this.framing);
       x0=(r.x-info.CanvasOriginX)/ppu;x1=(r.x+r.w-info.CanvasOriginX)/ppu;
       y0=(info.CanvasOriginY-r.y-r.h)/ppu;y1=(info.CanvasOriginY-r.y)/ppu;
     }else if(this.framing==='face'){const cx=(x0+x1)/2,half=(x1-x0)*.23;y0=y1-(y1-y0)*.33;x0=cx-half;x1=cx+half;}else if(this.framing==='portrait'){const cx=(x0+x1)/2,half=(x1-x0)*.36;y0=y1-(y1-y0)*.58;x0=cx-half;x1=cx+half;}

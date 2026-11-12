@@ -6,7 +6,8 @@ node_modules/
 *.log
 coverage/
 dist/
-public/models/agentkit-expressions-r3/
+public/models/*
+!public/models/.gitkeep
 public/vendor/live2dcubismcore*
 *.zip
 .DS_Store

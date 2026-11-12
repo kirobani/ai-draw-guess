@@ -81,15 +81,70 @@ function reactionFrame2(state, route) {
   return frame;
 }
 
+// public/model-family-avatars.mjs
+var modelFamilyRig = "model-family-live2d-r1";
+var geminiFamilyRig = "gemini-family-live2d-r1";
+function avatar(id, family, name, face) {
+  const rigRevision = family === "gemini" ? geminiFamilyRig : modelFamilyRig;
+  const [x, y, w, h] = face;
+  return {
+    id,
+    family,
+    name,
+    rigRevision,
+    modelUrl: `/models/${rigRevision}/${id}/${id}-expressions.model3.json`,
+    views: {
+      full: { x: 110, y: 0, w: 550, h: 768 },
+      portrait: { x: 150, y: 0, w: 470, h: family === "gemini" ? 650 : 515 },
+      face: { x: x - 42, y: Math.max(0, y - 78), w: w + 84, h: h + 116 },
+      seat: { x: Math.round(x + w / 2) - 225, y: 0, w: 450, h: 480 }
+    }
+  };
+}
+var MODEL_FAMILY_AVATARS = [
+  avatar("astra", "chatgpt", "GPT \xB7 Astra", [293, 71, 179, 194]),
+  avatar("luna", "chatgpt", "GPT \xB7 Luna", [291, 83, 192, 198]),
+  avatar("sol", "chatgpt", "GPT \xB7 Sol", [292, 58, 182, 198]),
+  avatar("terra", "chatgpt", "GPT \xB7 Terra", [308, 56, 152, 166]),
+  avatar("opus", "claude", "Claude \xB7 Opus", [278, 49, 237, 226]),
+  avatar("sonnet", "claude", "Claude \xB7 Sonnet", [297, 50, 169, 177]),
+  avatar("haiku-5.5", "claude", "Claude \xB7 Haiku 5.5", [272, 58, 212, 209]),
+  avatar("fable-5.2", "claude", "Claude \xB7 Fable 5.2", [292, 52, 183, 187]),
+  avatar("gemini-ultra", "gemini", "Gemini \xB7 Ultra", [286, 105, 192, 173]),
+  avatar("gemini-pro", "gemini", "Gemini \xB7 Pro", [284, 77, 197, 200]),
+  avatar("gemini-flash", "gemini", "Gemini \xB7 Flash", [286, 76, 195, 203]),
+  avatar("gemini-flash-lite", "gemini", "Gemini \xB7 Flash-Lite", [280, 83, 204, 211])
+];
+var MODEL_FAMILY_AVATAR_MAP = Object.fromEntries(MODEL_FAMILY_AVATARS.map((c) => [c.id, c]));
+
 // src/expression-agentkit-driver.mjs
 var ALIASES = { drawingFinished: "finished", thinking: "idle", closed: "idle" };
+var clamp2 = (value, limit) => Math.max(-limit, Math.min(limit, value));
 var ExpressionAgentKitDriver = class {
   constructor(id) {
     this.id = id;
+    this.family = MODEL_FAMILY_AVATAR_MAP[id]?.family;
     this.previous = null;
   }
   frame({ state = "idle", time = 0, blinkAt = -100, x = 0, y = 0, headX = 0, headY = 0, eyesClosed = false, reduce = false }, dt = 0) {
-    const p = reactionFrame2({ character: this.id, reaction: ALIASES[state] || state, time: reduce ? 0 : time, blinkAt, headX, headY, gazeX: 0, gazeY: 0, pointerX: x, pointerY: y, follow: true, talking: false }, "kit");
+    const t = reduce ? 0 : time, reaction = ALIASES[state] || state;
+    const p = reactionFrame2({ character: this.id, reaction, time: t, blinkAt, headX, headY, gazeX: 0, gazeY: 0, pointerX: x, pointerY: y, follow: true, talking: false }, "kit");
+    if (this.family) {
+      const drawing = reaction === "drawing";
+      Object.assign(p, {
+        ParamAngleX: clamp2(headX, 16),
+        ParamAngleY: clamp2(headY, 6),
+        ParamAngleZ: 0,
+        ParamBodyAngleX: 0,
+        ParamBodyAngleY: 0,
+        ParamBodyAngleZ: 0,
+        ParamEyeBallX: drawing ? -0.12 : clamp2(x * 0.4, 0.42),
+        ParamEyeBallY: drawing ? 0.85 : clamp2(y * 0.3, 0.32),
+        ParamDrawingStroke: drawing ? Math.sin(t * 3.3) * 0.55 : 0,
+        ParamBreath: 0.5 - 0.25 * Math.cos(t * Math.PI / 3),
+        ParamMouthForm: 0
+      });
+    }
     if (eyesClosed || state === "closed") p.ParamEyeLOpen = p.ParamEyeROpen = 0;
     if (this.previous && dt > 0) {
       const k = 1 - Math.exp(-dt * 8);
@@ -102,13 +157,15 @@ var ExpressionAgentKitDriver = class {
 
 // src/expression-regions.mjs
 var FACES = { "mimo": [315, 65, 135, 153], "minimax": [318, 65, 132, 153], "deepseek": [296, 57, 159, 181], "gemini": [316, 115, 132, 128], "claude": [308, 59, 177, 181], "chatgpt": [323, 81, 119, 149], "grok": [326, 118, 121, 142], "glm": [307, 66, 141, 154], "kimi": [301, 84, 141, 158], "qwen": [322, 89, 135, 139], "doubao": [328, 51, 126, 147] };
+var HUNYUAN_REGIONS = { full: { x: 128, y: 0, w: 512, h: 768 }, portrait: { x: 198, y: 0, w: 372, h: 465 }, face: { x: 292, y: 55, w: 188, h: 190 } };
 function expressionRegion(id, view) {
+  if (id === "hunyuan") return HUNYUAN_REGIONS[view] || HUNYUAN_REGIONS.portrait;
   const [x, y, w, h] = FACES[id];
   return view === "full" ? { x: 128, y: 0, w: 512, h: 768 } : view === "face" ? { x: x - 42, y: Math.max(0, y - 78), w: w + 84, h: h + 116 } : { x: 190, y: 0, w: 390, h: 440 };
 }
 
 // src/original-reactions.mjs
-var clamp2 = (x, a, b) => Math.max(a, Math.min(b, x));
+var clamp3 = (x, a, b) => Math.max(a, Math.min(b, x));
 function blinkOpen2(t) {
   if (t < 0 || t > 0.34) return 1;
   if (t < 0.13) return 0.5 + 0.5 * Math.cos(t / 0.13 * Math.PI);
@@ -162,15 +219,15 @@ function reactionFrame3(s, route = "original") {
   }
   if (s.talking) {
     face = 0;
-    open = clamp2((0.5 + 0.5 * Math.sin(t * 12)) * (0.55 + 0.45 * Math.sin(t * 3.4) ** 2), 0, 1);
+    open = clamp3((0.5 + 0.5 * Math.sin(t * 12)) * (0.55 + 0.45 * Math.sin(t * 3.4) ** 2), 0, 1);
     form = 0.2 + Math.sin(t * 3.3) * 0.5;
   }
   if (!eyes) eye = blinkOpen2(t - s.blinkAt);
-  return { ParamAngleX: clamp2(x, -16, 16), ParamAngleY: clamp2(y, -6, 6), ParamAngleZ: clamp2(z, -10, 10), ParamBodyAngleX: Math.sin(t * 0.5) * (skill ? 1.25 : 0.7), ParamBodyAngleZ: Math.sin(t * 0.65) * (skill ? 1 : 0.5), ParamEyeBallX: clamp2(gx, -0.6, 0.6), ParamEyeBallY: clamp2(gy, -0.42, 0.42), ParamEyeLOpen: eye, ParamEyeROpen: eye, ParamMouthOpenY: open, ParamMouthForm: form, ParamBrowLY: 0.05, ParamBrowRY: 0.05, ParamPaintedEyes: eyes, ParamPaintedFace: face, ParamDrawingBody: s.reaction === "drawing" ? 1 : 0, ParamDrawingStroke: stroke, ParamBreath: 0.5 + Math.sin(t * 1.25) * (skill ? 0.48 : 0.35) };
+  return { ParamAngleX: clamp3(x, -16, 16), ParamAngleY: clamp3(y, -6, 6), ParamAngleZ: clamp3(z, -10, 10), ParamBodyAngleX: Math.sin(t * 0.5) * (skill ? 1.25 : 0.7), ParamBodyAngleZ: Math.sin(t * 0.65) * (skill ? 1 : 0.5), ParamEyeBallX: clamp3(gx, -0.6, 0.6), ParamEyeBallY: clamp3(gy, -0.42, 0.42), ParamEyeLOpen: eye, ParamEyeROpen: eye, ParamMouthOpenY: open, ParamMouthForm: form, ParamBrowLY: 0.05, ParamBrowRY: 0.05, ParamPaintedEyes: eyes, ParamPaintedFace: face, ParamDrawingBody: s.reaction === "drawing" ? 1 : 0, ParamDrawingStroke: stroke, ParamBreath: 0.5 + Math.sin(t * 1.25) * (skill ? 0.48 : 0.35) };
 }
 
 // src/ds-reactions.mjs
-var clamp3 = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+var clamp4 = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 function blinkOpen3(elapsed) {
   if (elapsed < 0 || elapsed > 0.32) return 1;
   if (elapsed < 0.12) return 1 - Math.sin(elapsed / 0.12 * Math.PI / 2);
@@ -255,11 +312,11 @@ function reactionFrame4({
     } else eye = blink;
   }
   return {
-    ParamAngleX: clamp3(x, -22, 22),
-    ParamAngleY: clamp3(y, -7, 7),
-    ParamAngleZ: clamp3(z, -15, 15),
-    ParamEyeBallX: clamp3(gx, -1, 1),
-    ParamEyeBallY: clamp3(gy, -1, 1),
+    ParamAngleX: clamp4(x, -22, 22),
+    ParamAngleY: clamp4(y, -7, 7),
+    ParamAngleZ: clamp4(z, -15, 15),
+    ParamEyeBallX: clamp4(gx, -1, 1),
+    ParamEyeBallY: clamp4(gy, -1, 1),
     ParamEyeLOpen: original ? 1 : eye,
     ParamEyeROpen: original ? 1 : eye,
     ParamBrowLY: brow,
@@ -303,6 +360,181 @@ function sourceRegion(id, view) {
   const [x, y, w, h] = FACES2[id];
   return view === "full" ? { x: 128, y: 0, w: 512, h: 768 } : view === "face" ? { x: x - 42, y: Math.max(0, y - 78), w: w + 84, h: h + 116 } : { x: 190, y: 0, w: 390, h: 440 };
 }
+
+// public/cast-nine-avatars.mjs
+var CAST_NINE_REVISION = "live2d-all-characters-r1";
+var aliases = { chatgpt: "astra", claude: "opus", gemini: "gemini-ultra" };
+var otherIds = ["deepseek", "mimo", "minimax", "grok", "glm", "kimi", "qwen", "doubao", "hunyuan"];
+var ids = [...Object.keys(MODEL_FAMILY_AVATAR_MAP), ...otherIds];
+var urls = Object.fromEntries(ids.map((id) => [id, `/models/${CAST_NINE_REVISION}/${id}/${id}-expressions.model3.json`]));
+var castNineModelUrl = (id) => urls[aliases[id] || id];
+function castNineModelId(url) {
+  const id = url.split("/").at(-2);
+  return urls[id] === url ? id : null;
+}
+
+// src/cast-natural-motion.mjs
+var clamp5 = (v, a, b) => Math.max(a, Math.min(b, v));
+var profiles = { deepseek: { energy: 0.94, tempo: 1, seed: 21971 }, minimax: { energy: 1.08, tempo: 1.12, seed: 75031 } };
+var NaturalMotion = class {
+  constructor(id, { seed } = {}) {
+    this.profile = profiles[id] || profiles.deepseek;
+    this.seed = (seed ?? crypto.getRandomValues(new Uint32Array(1))[0]) || this.profile.seed;
+    this.t = 0;
+    this.nextPose = 0;
+    this.nextBlink = 2.7;
+    this.blinkAt = -10;
+    this.lastShift = -20;
+    this.gesture = "settle";
+    this.previousGesture = null;
+    this.speed = 1;
+    this.joints = {};
+    for (const k of ["bx", "by", "bz", "hx", "hy", "hz", "gx", "gy", "forward"]) this.joints[k] = { x: 0, v: 0, target: 0, delay: 0 };
+  }
+  random() {
+    let x = this.seed | 0;
+    x ^= x << 13;
+    x ^= x >>> 17;
+    x ^= x << 5;
+    this.seed = x >>> 0;
+    return this.seed / 4294967296;
+  }
+  between(a, b) {
+    return a + (b - a) * this.random();
+  }
+  choose() {
+    const e = this.profile.energy, j = this.joints, previous = this.gesture;
+    let choices = [["tilt", 24], ["lean", 20], ["shift", 13], ["glance", 18], ["settle", 15], ["rest", 10]];
+    choices = choices.filter(([name]) => name !== previous && name !== this.previousGesture && (name !== "shift" || this.t - this.lastShift > 8));
+    if (previous === "lean") choices = choices.map(([n, w]) => [n, n === "settle" ? w * 2 : w]);
+    let roll = this.random() * choices.reduce((s, [, w]) => s + w, 0), kind = choices.at(-1)[0];
+    for (const [name, weight] of choices) {
+      roll -= weight;
+      if (roll <= 0) {
+        kind = name;
+        break;
+      }
+    }
+    const next = Object.fromEntries(Object.entries(j).map(([k, v]) => [k, v.target]));
+    const side = this.random() < 0.5 ? -1 : 1;
+    let move, hold;
+    if (kind === "tilt") {
+      next.hz = side * this.between(12, 22) * e;
+      next.hy = this.between(-3, 5);
+      next.hx = j.hx.target * 0.6;
+      next.forward *= 0.6;
+      move = this.between(0.9, 1.9);
+      hold = this.between(1.4, 4.3);
+    } else if (kind === "lean") {
+      next.forward = this.between(0.65, 1);
+      next.hy = this.between(3, 8);
+      next.hx = this.between(-5, 5);
+      next.hz *= 0.45;
+      next.bz *= 0.55;
+      next.bx *= 0.5;
+      next.gx = 0;
+      next.gy = 0.08;
+      move = this.between(1, 2.1);
+      hold = this.between(1.3, 3.8);
+    } else if (kind === "shift") {
+      next.bz = side * this.between(4.5, 8.3) * e;
+      next.bx = side * this.between(1.5, 3.5) * e;
+      next.by = this.between(-2, 2);
+      next.forward *= 0.3;
+      next.hz = j.hz.target * 0.45 - side * this.between(3, 7);
+      this.lastShift = this.t;
+      move = this.between(1, 2.5);
+      hold = this.between(1.1, 3.5);
+    } else if (kind === "glance") {
+      next.hx = side * this.between(11, 20) * e;
+      next.gx = side * this.between(0.16, 0.3);
+      next.gy = this.between(-0.08, 0.12);
+      next.hy = this.between(-4, 5);
+      next.hz *= 0.8;
+      move = this.between(0.55, 1.3);
+      hold = this.between(0.8, 2.3);
+    } else if (kind === "settle") {
+      Object.assign(next, { bx: this.between(-1, 1), by: 0, bz: this.between(-1.5, 1.5), hx: this.between(-4, 4), hy: 0, hz: this.between(-3, 3), forward: 0, gx: 0, gy: 0 });
+      move = this.between(1.2, 2.7);
+      hold = this.between(1.5, 4.5);
+    } else {
+      move = 0.6;
+      hold = this.between(3.5, 7.5);
+    }
+    this.previousGesture = previous;
+    this.gesture = kind;
+    this.speed = 1.4 / (move / this.profile.tempo);
+    for (const k in next) {
+      j[k].target = next[k];
+      j[k].delay = this.t + (k.startsWith("g") ? 0 : kind === "glance" && k.startsWith("h") ? 0.18 : kind === "shift" && k.startsWith("h") ? 0.22 : 0);
+    }
+    this.nextPose = this.t + move + hold;
+  }
+  update(dt, { scene, pointer, headX, headY }) {
+    dt = clamp5(dt, 0, 0.1);
+    this.t += dt;
+    const t = this.t;
+    if (t >= this.nextPose) this.choose();
+    if (t >= this.nextBlink) {
+      this.blinkAt = t;
+      this.nextBlink = t + this.between(2.9, 5.1);
+    }
+    const count = Math.max(1, Math.ceil(dt / 0.016));
+    for (let i = 0; i < count; i++) {
+      const h = dt / count;
+      for (const [k, j2] of Object.entries(this.joints)) {
+        const omega = k.startsWith("g") ? 8.5 : (k.startsWith("h") ? 3.4 : 4.2) * this.speed;
+        const target = t < j2.delay ? j2.x : j2.target;
+        j2.v += (omega * omega * (target - j2.x) - 2 * omega * j2.v) * h;
+        j2.x += j2.v * h;
+      }
+    }
+    const drawing = scene === 1, desiredActivity = drawing ? 0.5 : 1;
+    this.activity ??= desiredActivity;
+    this.activity += (desiredActivity - this.activity) * (1 - Math.exp(-dt * 2.8));
+    const a = this.activity;
+    const j = this.joints;
+    let open = 1;
+    const b = t - this.blinkAt;
+    if (b >= 0 && b < 0.105) open = 0.5 + 0.5 * Math.cos(Math.PI * b / 0.105);
+    else if (b < 0.15 && b >= 0.105) open = 0;
+    else if (b >= 0.15 && b < 0.33) open = 0.5 - 0.5 * Math.cos(Math.PI * (b - 0.15) / 0.18);
+    const breath = t % 5.6, cycle = breath < 2.1 ? breath / 2.1 : (5.6 - breath) / 3.5;
+    return {
+      ParamPaintedEyes: scene,
+      ParamPaintedFace: scene,
+      ParamDrawingBody: drawing || scene === 2 ? 1 : 0,
+      ParamDrawingStroke: drawing ? Math.sin(t * 3.3) * 0.55 : 0,
+      ParamAngleX: clamp5(j.hx.x * a + headX, -23, 23),
+      ParamAngleY: clamp5(j.hy.x * a + headY, -17, 17),
+      ParamAngleZ: clamp5(j.hz.x * a, -25, 25),
+      ParamBodyAngleX: clamp5(j.bx.x * a, -7, 7),
+      ParamBodyAngleY: clamp5(j.by.x * a, -6, 6),
+      ParamBodyAngleZ: clamp5(j.bz.x * a, -9.5, 9.5),
+      ParamLeanForward: clamp5(j.forward.x * a, 0, 1),
+      ParamBreath: 0.05 + 0.9 * cycle * cycle * (3 - 2 * cycle),
+      ParamEyeBallX: drawing ? -0.12 : clamp5(pointer ? pointer.x * 0.4 : j.gx.x, -0.42, 0.42),
+      ParamEyeBallY: drawing ? 0.85 : clamp5(pointer ? pointer.y * 0.3 : j.gy.x, -0.32, 0.32),
+      ParamEyeLOpen: open,
+      ParamEyeROpen: open
+    };
+  }
+};
+
+// src/cast-nine-driver.mjs
+var slots = Object.fromEntries(REACTIONS.map(([id], i) => [id, i]));
+slots.drawingFinished = slots.finished;
+var CastNineDriver = class {
+  constructor(id, options) {
+    this.motion = new NaturalMotion(id, options);
+  }
+  frame({ state = "idle", time = 0, blinkAt = -100, x = 0, y = 0, headX = 0, headY = 0, eyesClosed = false, reduce = false }, dt = 0) {
+    const p = this.motion.update(reduce ? 0 : dt, { scene: slots[state] ?? 0, headX, headY, pointer: x || y ? { x, y } : null });
+    const lid = eyesClosed || state === "closed" ? 0 : Math.min(p.ParamEyeLOpen, blinkOpen(time - blinkAt));
+    p.ParamEyeLOpen = p.ParamEyeROpen = lid;
+    return p;
+  }
+};
 
 // vendor/cubism-framework/src/id/cubismid.ts
 var CubismId = class _CubismId {
@@ -388,9 +620,9 @@ var CubismIdManager = class {
    * @param ids ID名リスト
    * @param count IDの個数
    */
-  registerIds(ids) {
-    for (let i = 0; i < ids.length; i++) {
-      this.registerId(ids[i]);
+  registerIds(ids2) {
+    for (let i = 0; i < ids2.length; i++) {
+      this.registerId(ids2[i]);
     }
   }
   /**
@@ -11225,6 +11457,8 @@ var CharacterView = class {
   rig = {};
   originalKit = false;
   expressionKit = false;
+  castNineId = null;
+  familyAvatar;
   driver;
   expressionState = "idle";
   pendingExpression = null;
@@ -11237,7 +11471,7 @@ var CharacterView = class {
     this.onError = options.onError || (() => {
     });
     this.framing = options.framing || "full";
-    this.modelUrl = options.modelUrl || "/models/agentkit-expressions-r3/deepseek/deepseek-expressions.model3.json";
+    this.modelUrl = options.modelUrl || castNineModelUrl("deepseek");
     this.motion = options.motion || { sway: 1, joy: 1 };
     this.observer = new ResizeObserver(() => this.resize());
     this.observer.observe(canvas);
@@ -11264,7 +11498,7 @@ var CharacterView = class {
   }
   async loadNow() {
     try {
-      if (!globalThis.Live2DCubismCore) throw new Error("\u5C1A\u672A\u5B89\u88C5 Cubism Core\uFF0C\u8BF7\u6309 README \u7684 Live2D \u6B65\u9AA4\u5B89\u88C5\u3002");
+      if (!globalThis.Live2DCubismCore) throw new Error("\u89D2\u8272\u8FD0\u884C\u5E93\u6CA1\u6709\u52A0\u8F7D\uFF0C\u8BF7\u5237\u65B0\u91CD\u8BD5\u3002");
       if (!frameworkReady) {
         CubismFramework.startUp();
         CubismFramework.initialize(CORE_MEMORY_BYTES);
@@ -11288,10 +11522,13 @@ var CharacterView = class {
         this.parameters.set(this.model.getParameterId(i).getString(), i);
         this.defaults.push(this.model.getParameterDefaultValue(i));
       }
-      this.expressionKit = this.modelUrl.startsWith("/models/agentkit-expressions-r3/");
+      const id = this.modelUrl.split("/").at(-2), familyAvatar = MODEL_FAMILY_AVATAR_MAP[id];
+      this.castNineId = castNineModelId(this.modelUrl);
+      if (this.castNineId || familyAvatar?.modelUrl === this.modelUrl) this.familyAvatar = familyAvatar;
+      this.expressionKit = !!this.castNineId || !!this.familyAvatar || this.modelUrl.startsWith("/models/agentkit-expressions-r3/");
       this.originalKit = this.expressionKit || this.modelUrl.startsWith("/models/agentkit-original-hd/");
-      if (!["ParamAngleX", "ParamAngleY", "ParamBreath"].every((id) => this.parameters.has(id)) || !["ParamPaintedEyes", "ParamPaintedHead"].some((id) => this.parameters.has(id))) throw new Error("\u6A21\u578B\u52A8\u4F5C\u53C2\u6570\u4E0D\u5B8C\u6574\u3002");
-      if (this.originalKit) this.driver = new (this.expressionKit ? ExpressionAgentKitDriver : OriginalAgentKitDriver)(this.modelUrl.split("/").at(-2));
+      if (!["ParamAngleX", "ParamAngleY", "ParamBreath"].every((id2) => this.parameters.has(id2)) || !["ParamPaintedEyes", "ParamPaintedHead"].some((id2) => this.parameters.has(id2))) throw new Error("\u6A21\u578B\u52A8\u4F5C\u53C2\u6570\u4E0D\u5B8C\u6574\u3002");
+      if (this.originalKit) this.driver = new (this.castNineId ? CastNineDriver : this.expressionKit ? ExpressionAgentKitDriver : OriginalAgentKitDriver)(id);
       this.model.update();
       let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
       for (let i = 0; i < this.model.getDrawableCount(); i++) {
@@ -11342,7 +11579,7 @@ var CharacterView = class {
       if (!shader._isShaderLoaded) throw new Error("\u89D2\u8272\u7740\u8272\u5668\u52A0\u8F7D\u5931\u8D25\u3002");
       this.metadata = { drawables: this.model.getDrawableCount(), parameters: this.model.getParameterCount(), mocVersion: this.moc.getMocVersion() };
       this.canvas.dataset.modelUrl = this.modelUrl;
-      this.canvas.dataset.rig = this.expressionKit ? "agentkit-expressions-r3" : this.originalKit ? "agentkit-original-hd" : "legacy";
+      this.canvas.dataset.rig = this.castNineId ? CAST_NINE_REVISION : this.familyAvatar?.rigRevision || (this.expressionKit ? "agentkit-expressions-r3" : this.originalKit ? "agentkit-original-hd" : "legacy");
       this.ready = true;
       this.canvas.dataset.loaded = "true";
       this.canvas.dataset.parameters = String(this.metadata.parameters);
@@ -11550,7 +11787,7 @@ var CharacterView = class {
   renderOriginalKit(dt) {
     this.time += dt;
     this.stateTime += dt;
-    if (this.time > this.nextBlink && !this.reduce) this.blink();
+    if (this.time > this.nextBlink && !this.reduce && !this.castNineId) this.blink();
     if (this.pendingExpression && this.time >= this.expressionSwitchAt) {
       this.expressionState = this.pendingExpression;
       this.pendingExpression = null;
@@ -11573,7 +11810,7 @@ var CharacterView = class {
     let [x0, y0, x1, y1] = this.bounds;
     if (this.originalKit) {
       const info = this.model.getModel().canvasinfo, ppu = info.PixelsPerUnit;
-      const r = (this.expressionKit ? expressionRegion : sourceRegion)(this.modelUrl.split("/").at(-2), this.framing);
+      const r = this.familyAvatar ? this.familyAvatar.views[this.framing] || this.familyAvatar.views.portrait : (this.expressionKit ? expressionRegion : sourceRegion)(this.modelUrl.split("/").at(-2), this.framing);
       x0 = (r.x - info.CanvasOriginX) / ppu;
       x1 = (r.x + r.w - info.CanvasOriginX) / ppu;
       y0 = (info.CanvasOriginY - r.y - r.h) / ppu;
